@@ -39,7 +39,7 @@ Untuk JejaKarbon, carbon footprint yang dikalkulasi berasal dari penggunaan moto
 
 ## Daftar fitur atau modul yang diimplementasikan beserta kontrak kinerja per anggota kelompok
 1) Halaman utama, Halaman login/logout, Register, faq (**Rania Maharani Narendra**)
-handle user login
+- handle user login
 - Daftar frequently asked questions (get)
 - form faq (post)
 2) Halaman input data transportasi dan perhitungan carbon footprint (**Griselda Neysa Sadiya**)
