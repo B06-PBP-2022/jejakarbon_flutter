@@ -28,6 +28,9 @@ Tanpa kita sadari, hampir semua aktivitas yang kita lakukan menghasilkan carbon 
 
 Untuk mengurangi dampak dari Carbon Footprint,  kita harus bekerja sama saling mengurangi Carbon Footprint yang kita hasilkan. Dengan itu, kelompok kami memilih tema carbon footprint. 
 
+Sumber Pendukung:
+[Why Is a Carbon Footprint Bad for the Environment? All You Need to Know](https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice)
+
 ## Manfaat Aplikasi
 Dengan adanya JejaKarbon, diharapkan:
 - Pengguna bisa mengetahui jumlah carbon footprint mereka, hal ini dilakukan untuk meningkatkan awareness sebanyak apa carbon footprint yang telah dihasilkan dari penggunaan transportasi ataupun listrik sehari-hari pengguna.
