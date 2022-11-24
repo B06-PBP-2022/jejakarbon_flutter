@@ -2,9 +2,13 @@
 
 ## Nama-nama anggota kelompok
 Daffa Ilham Restupratama - 2106751013
+
 Dipa Alhaza - 2106751543
+
 Griselda Neysa Sadiya - 2106751392
+
 Pantun Elfreddy Sihombing - 2106751612
+
 Rania Maharani Narendra - 2106650222
 
 ## Deskripsi aplikasi (nama aplikasi, fungsi aplikasi, dan peran/aktor pengguna aplikasi)
