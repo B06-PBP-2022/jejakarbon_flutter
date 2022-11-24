@@ -19,7 +19,7 @@ Aplikasi yang akan dikembangkan bernama Jejakarbon. JejaKarbon adalah *environme
 
 Untuk JejaKarbon, carbon footprint yang dikalkulasi berasal dari penggunaan motor, mobil, dan listrik. Penggunaan motor dan mobil dihitung berdasarkan jumlah jarak tempuh dan konsumsi BBM yang dilakukan oleh user, sedangkan listrik berdasarkan jumlah kWh perbulannya.
 
-## Background
+### Background
 Carbon Footprint atau jejak karbon adalah jumlah emisi karbon dioksida yang berkaitan dengan aktivitas dari seseorang ataupun suatu objek seperti gedung, pabrik, kendaraan, dan sebagainya. Emisi tersebut adalah hasil dari pembakaran bahan bakar fosil di bidang manufaktur, pemanasan, dan transportasi. 
 
 Banyak dampak yang muncul karena carbon footprint, seperti perubahan iklim yang bisa mengarah ke pemanasan global, polusi udara, hujan asam, mencairnya es di kutub, dan pengasaman pesisir serta laut. Jadi, emisi karbon ini sangat berdampak bagi lingkungan kita.
@@ -31,7 +31,7 @@ Untuk mengurangi dampak dari Carbon Footprint,  kita harus bekerja sama saling m
 Sumber Pendukung:
 [Why Is a Carbon Footprint Bad for the Environment? All You Need to Know](https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice)
 
-## Manfaat Aplikasi
+### Manfaat Aplikasi
 Dengan adanya JejaKarbon, diharapkan:
 - Pengguna bisa mengetahui jumlah carbon footprint mereka, hal ini dilakukan untuk meningkatkan awareness sebanyak apa carbon footprint yang telah dihasilkan dari penggunaan transportasi ataupun listrik sehari-hari pengguna.
 - Pengguna bisa melakukan donasi, membantu perusahaan penggerak go green untuk menghijaukan lingkungan.
