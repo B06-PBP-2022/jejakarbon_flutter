@@ -61,19 +61,34 @@ Dengan adanya JejaKarbon, diharapkan:
 - handle user login
 - Daftar frequently asked questions (get)
 - form faq (post)
+
 2) Halaman input data transportasi dan perhitungan carbon footprint (**Griselda Neysa Sadiya**)
 - Form input data transportasi (post)
 - Perhitungan carbon footprint
 menghitung carbon footprint yang dihasilkan dari motor, mobil, dan listrik. Untuk transportasi dihitung berdasarkan jarak tempuh dan konsumsi BBM yang dimasukkan oleh User, sedangkan listrik dihitung berdasarkan jumlah kWh perbulannya. 
+*Note:*
+* *Kalkulator carbon dimaksudkan menghasilkan output berupa jumlah karbon yang dihasilkan dari pembuatan energi untuk motor, mobil, dan listrik.*
+* *Rumus yang digunakan pada website Jejakarbon tidak sepenuhnya benar karena terdapat kesalahan yang jika diterapkan dalam dunia nyata fatal.*
+* *Rumus perhitungan kalkulator untuk listrik benar, tetapi skalar yang digunakan tidak sesuai jika digunakan di Indonesia atau di tahun 2022.*
+* *Rumus perhitungan kalkulator untuk listrik dan mobil tidak dapat ditemukan di Internet sehingga pada back end website disesuaikan terlebih dahulu*
+* *Perhitungan karbon bersifat dinamis karena bergantung pada rata-rata penggunaan karbon di suatu daerah yang harus diupdate tiap beberapa waktu*
+* *Di Indonesia sendiri, tidak terdapat data ataupun API penghasilan karbon yang sekiranya bisa digunakan untuk menghitung skalar awal yang akan digunakan di rumus*
+* *Meskipun begitu, pencarian literatur tetap dilakukan dengan daftar referensi utama sebagai berikut.*
+    * *Kasper, D. (2016, October 2). Carbon Footprint Calculation. YouTube. Retrieved October 22, 2022, from https://www.youtube.com/watch?v=wWeI0c1m14Y*
+    * *Carbon Footprint Calculation Formulas. IBM. (2021, March 1). Retrieved October 22, 2022, from https://www.ibm.com/docs/en/tririga/10.7?topic=calculations-carbon-footprint-calculation-formulas*
+    * *Gençer, Görkem. (2022). 4 Steps to Calculate the Carbon Footprint of Your Organization. AI Multiple. Retrieved October 21, 2022 from https://research.aimultiple.com/carbon-footprint-calculation/*
 - Status penghasilan carbon footprint (get)
+
 3) Halaman progres akun pengguna (**Daffa Ilham Restupratama**)
 - Profile user (get)
 - Edit profile (post)
 - Daftar produksi carbon footprint yang dihasilkan (get) => dari input data transportasi
 - Daftar donasi yang telah dilakukan (get) => dari form ikut donasi/pembayaran
+
 4) Halaman penambahan project (**Dipa Alhaza**)
 - Form pembukaan donasi (post)
 - Daftar seluruh donasi yang terdaftar (get)
+
 5) Halaman form ikut donasi/pembayaran (**Pantun Elfreddy Sihombing**)
 - Form mengikuti donasi (post)
 - Daftar donasi yang telah dilakukan user (get)
