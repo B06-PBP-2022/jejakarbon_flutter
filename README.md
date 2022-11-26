@@ -67,7 +67,8 @@ Dengan adanya JejaKarbon, diharapkan:
 - Perhitungan carbon footprint
 menghitung carbon footprint yang dihasilkan dari motor, mobil, dan listrik. Untuk transportasi dihitung berdasarkan jarak tempuh dan konsumsi BBM yang dimasukkan oleh User, sedangkan listrik dihitung berdasarkan jumlah kWh perbulannya. 
 
-*Note:*
+*Note:**
+
     * *Kalkulator carbon dimaksudkan menghasilkan output berupa jumlah karbon yang dihasilkan dari pembuatan energi untuk motor, mobil, dan listrik.*
     * *Rumus yang digunakan pada website Jejakarbon tidak sepenuhnya benar karena terdapat kesalahan yang jika diterapkan dalam dunia nyata fatal.*
     * *Rumus perhitungan kalkulator untuk listrik benar, tetapi skalar yang digunakan tidak sesuai jika digunakan di Indonesia atau di tahun 2022. Saat ini perhitungan carbon listrik dilakukan dengan mengkalikan angka kWh dengan skalar 0.794*
