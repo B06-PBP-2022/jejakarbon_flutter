@@ -39,6 +39,7 @@ dependencies:
   http: ^0.13.5
   provider: ^6.0.4
   pbp_django_auth: ^0.2.2
+  getwidget: ^3.0.1
 
 dev_dependencies:
   flutter_test:
