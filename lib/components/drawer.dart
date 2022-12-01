@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile.dart';
 import 'package:jejakarbon_flutter/main.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 
@@ -12,7 +13,10 @@ Drawer buildDrawer(BuildContext context) {
             // Route ke main
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Home',)),
+              MaterialPageRoute(
+                  builder: (context) => const MyHomePage(
+                        title: 'Home',
+                      )),
             );
           },
         ),
@@ -26,7 +30,17 @@ Drawer buildDrawer(BuildContext context) {
             );
           },
         ),
-     ],
+        ListTile(
+          title: const Text('Profile'),
+          onTap: () {
+            // Route ke main
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          },
+        ),
+      ],
     ),
   );
 }
