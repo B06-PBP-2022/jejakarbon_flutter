@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.green,
         ),
-        home: const MyHomePage(title: 'Home'),
+        home: LoginPage(),
         routes:{
           "/login": (BuildContext context) => LoginPage(),
         },
