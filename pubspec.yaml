@@ -40,6 +40,8 @@ dependencies:
   provider: ^6.0.4
   pbp_django_auth: ^0.2.2
   getwidget: ^3.0.1
+  accordion: ^2.5.1
+  badges: ^2.0.3
 
 dev_dependencies:
   flutter_test:
