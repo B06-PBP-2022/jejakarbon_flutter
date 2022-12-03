@@ -1,6 +1,10 @@
+import 'package:jejakarbon_flutter/apps/faq/page/faq_form.dart';
 import 'package:jejakarbon_flutter/apps/faq/util/fetch_faq.dart';
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:accordion/accordion.dart';
+import 'package:accordion/controllers.dart';
+import 'package:badges/badges.dart';
 
 class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
@@ -28,54 +32,107 @@ class _FaqPageState extends State<FaqPage> {
               return Column(
                 children: const [
                   Text(
-                    "No questions added yet",
+                    "Pertanyaan belum ada? Tanyakan pada form berikut ini",
                     style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                   ),
                   SizedBox(height: 8),
                 ],
               );
             } else {
-              return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (_, index) => GestureDetector(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        padding: const EdgeInsets.all(20.0),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                                color:Colors.green,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 2.0,
-                                offset: Offset(
-                                  0,
-                                  1.5,
-                                ),
-                              )
-                            ]),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${snapshot.data![index].fields.question}",
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+              return Container(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                  child: ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_, index) => GestureDetector(
+                            child: Accordion(
+                              maxOpenSections: 2,
+                              headerBackgroundColor: Color.fromARGB(255, 119, 130, 119),
+                              scaleWhenAnimating: true,
+                              openAndCloseAnimation: true,
+                              headerPadding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 15),
+                              sectionOpeningHapticFeedback:
+                                  SectionHapticFeedback.heavy,
+                              sectionClosingHapticFeedback:
+                                  SectionHapticFeedback.light,
+                              paddingListBottom: 2,
+                              paddingListTop: 2,
+                              children: [
+                                AccordionSection(
+                                    isOpen: false,
+                                    header: Text(
+                                      "${snapshot.data![index].fields.question}",
+                                      style: const TextStyle(
+                                          fontSize: 16.0,
+                                          color: Colors.white),
+                                    ),
+                                    content: Column(children: [
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          padding: const EdgeInsets.all(10),
+                                          child: Badge(
+                                            badgeContent: Text(
+                                              "asked by ${snapshot.data![index].fields.username}",
+                                              overflow: TextOverflow.visible,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                            shape: BadgeShape.square,
+                                            badgeColor: Colors.green,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          )),
+                                      Column(children: [
+                                        Container(
+                                          alignment: Alignment.topLeft,
+                                          padding: const EdgeInsets.symmetric(horizontal:10),
+                                          child:Text("Jawaban:",
+                                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),),
+                                        ),
+                                        Container(
+                                        padding: const EdgeInsets.symmetric(horizontal:10),
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                          "${snapshot.data![index].fields.answer}",
+                                          overflow: TextOverflow.visible,
+                                        ),
+                                      )
+                                      ],)
+                                    ]))
+                              ],
                             ),
-                          ],
-                        ),
-                      )));
+                          )
+                          )
+                );
             }
           }
         },
       ),
+      floatingActionButton: Container(
+          padding: const EdgeInsets.only(left: 30),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: TextButton(
+              style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(100, 50)),
+                  backgroundColor: MaterialStateProperty.all(Colors.green)),
+              onPressed: () {
+                Navigator.push(context, 
+                  MaterialPageRoute(builder: ((context) => FaqForm())
+                ));
+              },
+              child: const Text(
+                'Ask a question here',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+            ),
+          ),
+        )
     );
   }
 }
