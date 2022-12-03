@@ -129,22 +129,24 @@ class _LoginPageState extends State<LoginPage> {
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green)),
               onPressed: () async {
-                  final response = await request.login("https://jejakarbon.up.railway.app/auth/login/", {
-                    'username' : username,
-                    'password' : password1
-                  });
-                  if (request.loggedIn) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Successfully logged in!"),
-                    ));
+                final response = await request.login(
+                    "https://jejakarbon.up.railway.app/auth/login/",
+                    {'username': username, 'password': password1});
+                if (request.loggedIn) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Successfully logged in!"),
+                  ));
 
-                    Navigator.pushReplacement(
-                      context,  MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Home')),);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("An error occured, please try again."),
-                    ));
-                  }
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyHomePage(title: 'Home')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("An error occured, please try again."),
+                  ));
+                }
               },
               child: const Text(
                 'login',

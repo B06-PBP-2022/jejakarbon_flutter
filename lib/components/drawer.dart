@@ -3,6 +3,7 @@ import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/profile/page/profile.dart';
 import 'package:jejakarbon_flutter/main.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
 
 Drawer buildDrawer(BuildContext context) {
   return Drawer(
@@ -26,7 +27,7 @@ Drawer buildDrawer(BuildContext context) {
           onTap: () {
             // Route ke main
             Navigator.pushReplacement(
-              context, 
+              context,
               MaterialPageRoute(builder: (context) => const FaqPage()),
             );
           },
@@ -36,7 +37,7 @@ Drawer buildDrawer(BuildContext context) {
           onTap: () {
             // Route ke main
             Navigator.pushReplacement(
-              context, 
+              context,
               MaterialPageRoute(builder: (context) => LoginPage()),
             );
           },
@@ -47,7 +48,7 @@ Drawer buildDrawer(BuildContext context) {
             // Route ke main
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const ProfilePage()),
+              MaterialPageRoute(builder: (context) => const BukaDonasiPage()),
             );
           },
         ),
