@@ -1,3 +1,4 @@
+import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_form.dart';
 import 'package:jejakarbon_flutter/apps/faq/util/fetch_faq.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,8 @@ import 'package:jejakarbon_flutter/components/drawer.dart';
 import 'package:accordion/accordion.dart';
 import 'package:accordion/controllers.dart';
 import 'package:badges/badges.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
@@ -16,6 +19,7 @@ class FaqPage extends StatefulWidget {
 class _FaqPageState extends State<FaqPage> {
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Frequently Asked Questions"),
@@ -109,7 +113,7 @@ class _FaqPageState extends State<FaqPage> {
           }
         },
       ),
-      floatingActionButton: Container(
+      floatingActionButton: request.loggedIn ? Container(
           padding: const EdgeInsets.only(left: 30),
           child: Align(
             alignment: Alignment.bottomCenter,
@@ -124,6 +128,29 @@ class _FaqPageState extends State<FaqPage> {
               },
               child: const Text(
                 'Ask a question here',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+            ),
+          ),
+        ) : Container(
+          padding: const EdgeInsets.only(left: 30),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: TextButton(
+              style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(100, 50)),
+                  backgroundColor: MaterialStateProperty.all(Colors.green)),
+              onPressed: () {
+                Navigator.push(context, 
+                  MaterialPageRoute(builder: ((context) => LoginPage())
+                ));
+              },
+              child: const Text(
+                'Login to add question!',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
