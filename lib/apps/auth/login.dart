@@ -134,8 +134,9 @@ class _LoginPageState extends State<LoginPage> {
                     "https://jejakarbon.up.railway.app/auth/login/",
                     {'username': username, 'password': password1});
                 if (request.loggedIn) {
-                  ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                    content: Text("Successfully logged in! Welcome $username :)"),
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        "Successfully logged in! Welcome ${request.getJsonData()['username']} :)"),
                   ));
 
                   Navigator.pushReplacement(
@@ -152,10 +153,9 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text(
                 'Login',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
             ),
           ),
