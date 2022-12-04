@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                 if (request.loggedIn) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(
-                        "Successfully logged in! Welcome ${request.getJsonData()['username']} :)"),
+                        "Successfully logged in! Welcome ${request.getJsonData()} :)"),
                   ));
 
                   Navigator.pushReplacement(
