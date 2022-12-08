@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/profile/page/profile.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +41,16 @@ Drawer buildDrawer(BuildContext context) {
             // Route ke main
             Navigator.pushReplacement(
               context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          },
+        ),
+        ListTile(
+          title: const Text('Buka Donasi'),
+          onTap: () {
+            // Route ke main
+            Navigator.pushReplacement(
+              context,
               MaterialPageRoute(builder: (context) => const BukaDonasiPage()),
             );
           },
@@ -64,19 +73,19 @@ Drawer buildDrawer(BuildContext context) {
                       .logout("https://jejakarbon.up.railway.app/auth/logout/");
                   if (!request.loggedIn) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("Successfully logged out!"),
+                      content: Text("Successfully logged out!"),
                     ));
-                     // ignore: use_build_context_synchronously
-                     Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("error occured!"),
-                  ));
-                }
-              }),
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("error occured!"),
+                    ));
+                  }
+                }),
       ],
     ),
   );

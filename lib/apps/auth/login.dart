@@ -9,6 +9,8 @@ import 'package:jejakarbon_flutter/components/drawer.dart';
 class LoginPage extends StatefulWidget {
   static const routeName = '/login';
 
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -45,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: Colors.green,
                               borderRadius: BorderRadius.circular(5)),
                           child: TextFormField(
                               decoration: InputDecoration(
@@ -78,7 +79,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              color: Colors.green,
                               borderRadius: BorderRadius.circular(5)),
                           child: TextFormField(
                             obscureText: !isPasswordVisible,
@@ -127,14 +127,16 @@ class _LoginPageState extends State<LoginPage> {
             alignment: Alignment.bottomCenter,
             child: TextButton(
               style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(100, 50)),
                   backgroundColor: MaterialStateProperty.all(Colors.green)),
               onPressed: () async {
                 final response = await request.login(
                     "https://jejakarbon.up.railway.app/auth/login/",
                     {'username': username, 'password': password1});
                 if (request.loggedIn) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("Successfully logged in!"),
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        "Successfully logged in! Welcome ${request.getJsonData()} :)"),
                   ));
 
                   Navigator.pushReplacement(
@@ -144,22 +146,19 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("An error occured, please try again."),
+                    content: Text("Incorrect Username or Password."),
                   ));
                 }
               },
               child: const Text(
-                'login',
+                'Login',
                 style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  height: 1.5,
-                  fontWeight: FontWeight.bold,
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
             ),
           ),
         ));
   }
 }
-
