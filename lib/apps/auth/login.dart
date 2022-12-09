@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login';
