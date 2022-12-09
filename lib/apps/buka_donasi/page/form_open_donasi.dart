@@ -1,10 +1,6 @@
-// ignore_for_file: unused_import
-// import 'package:b07uas/screens/login_required.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-// import 'package:ionicons/ionicons.dart';
-// import '../user.dart' as user;
 
 class FormOpenDonasi extends StatefulWidget {
   const FormOpenDonasi({Key? key}) : super(key: key);

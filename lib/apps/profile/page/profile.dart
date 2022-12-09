@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

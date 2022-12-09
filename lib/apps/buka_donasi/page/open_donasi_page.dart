@@ -1,8 +1,12 @@
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/util/fetch_daftar_donasi.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/form_open_donasi.dart';
+import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/pembayaran/payment.dart';
 
 void main() {
@@ -20,6 +24,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
   // TODO: implement build
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
           title: const Text("Buka Donasi"),
@@ -86,49 +91,204 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    TextButton(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.green.shade100),
-                                          foregroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.green.shade800),
-                                          overlayColor: MaterialStateProperty
-                                              .resolveWith<Color?>(
-                                            (Set<MaterialState> states) {
-                                              if (states.contains(
-                                                  MaterialState.hovered)) {
-                                                return Colors.green.shade700
-                                                    .withOpacity(0.04);
-                                              }
-                                              if (states.contains(
-                                                      MaterialState.focused) ||
-                                                  states.contains(
-                                                      MaterialState.pressed)) {
-                                                return Colors.green.shade700
-                                                    .withOpacity(0.12);
-                                              }
-                                              return null; // Defer to the widget's default.
-                                            },
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context, MaterialPageRoute(builder: (context) => PaymentMethod())
-                                        );
-                                        },
-                                        child: const Text('Donasi')),
-                                  ],
-                                ),
+                                request.jsonData["organization"]
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          TextButton(
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.green.shade100),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.green.shade800),
+                                                overlayColor:
+                                                    MaterialStateProperty
+                                                        .resolveWith<Color?>(
+                                                  (Set<MaterialState> states) {
+                                                    if (states.contains(
+                                                        MaterialState
+                                                            .hovered)) {
+                                                      return Colors
+                                                          .green.shade700
+                                                          .withOpacity(0.04);
+                                                    }
+                                                    if (states.contains(
+                                                            MaterialState
+                                                                .focused) ||
+                                                        states.contains(
+                                                            MaterialState
+                                                                .pressed)) {
+                                                      return Colors
+                                                          .green.shade700
+                                                          .withOpacity(0.12);
+                                                    }
+                                                    return null; // Defer to the widget's default.
+                                                  },
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: const Text('Detail')),
+                                        ],
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          TextButton(
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.green.shade100),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.green.shade800),
+                                                overlayColor:
+                                                    MaterialStateProperty
+                                                        .resolveWith<Color?>(
+                                                  (Set<MaterialState> states) {
+                                                    if (states.contains(
+                                                        MaterialState
+                                                            .hovered)) {
+                                                      return Colors
+                                                          .green.shade700
+                                                          .withOpacity(0.04);
+                                                    }
+                                                    if (states.contains(
+                                                            MaterialState
+                                                                .focused) ||
+                                                        states.contains(
+                                                            MaterialState
+                                                                .pressed)) {
+                                                      return Colors
+                                                          .green.shade700
+                                                          .withOpacity(0.12);
+                                                    }
+                                                    return null; // Defer to the widget's default.
+                                                  },
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: const Text('Donasi')),
+                                          const SizedBox(width: 20),
+                                          TextButton(
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.green.shade100),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.green.shade800),
+                                                overlayColor:
+                                                    MaterialStateProperty
+                                                        .resolveWith<Color?>(
+                                                  (Set<MaterialState> states) {
+                                                    if (states.contains(
+                                                        MaterialState
+                                                            .hovered)) {
+                                                      return Colors
+                                                          .green.shade700
+                                                          .withOpacity(0.04);
+                                                    }
+                                                    if (states.contains(
+                                                            MaterialState
+                                                                .focused) ||
+                                                        states.contains(
+                                                            MaterialState
+                                                                .pressed)) {
+                                                      return Colors
+                                                          .green.shade700
+                                                          .withOpacity(0.12);
+                                                    }
+                                                    return null; // Defer to the widget's default.
+                                                  },
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: const Text('Detail')),
+                                        ],
+                                      ),
                               ],
                             ),
                           ));
                 }
               }
-            }));
+            }),
+        floatingActionButton: request.loggedIn
+            ? Container(
+                padding: const EdgeInsets.only(left: 30),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: request.jsonData["organization"]
+                      ? TextButton(
+                          style: ButtonStyle(
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(100, 50)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.green)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => FormOpenDonasi())));
+                          },
+                          child: const Text(
+                            'Open donasi',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                        )
+                      : TextButton(
+                          style: ButtonStyle(
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(100, 50)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.green)),
+                          onPressed: () {},
+                          child: const Text(
+                            'Hanya organisasi yang dapat membuka event donasi',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                        ),
+                ),
+              )
+            : Container(
+                padding: const EdgeInsets.only(left: 30),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: TextButton(
+                    style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(100, 50)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.green)),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => LoginPage())));
+                    },
+                    child: const Text(
+                      'Login to add question!',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+              ));
   }
 }
