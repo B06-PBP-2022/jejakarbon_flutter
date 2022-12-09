@@ -2,7 +2,7 @@ import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_form.dart';
 import 'package:jejakarbon_flutter/apps/faq/util/fetch_faq.dart';
 import 'package:flutter/material.dart';
-import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:accordion/accordion.dart';
 import 'package:accordion/controllers.dart';
 import 'package:badges/badges.dart';
