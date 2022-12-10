@@ -1,31 +1,34 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class FormOpenDonasi extends StatefulWidget {
   const FormOpenDonasi({Key? key}) : super(key: key);
-  static const namaRoute = '/tulis';
   @override
-  FormArtikelState createState() => FormArtikelState();
+  FormOpenDonasiState createState() => FormOpenDonasiState();
 }
 
-class FormArtikelState extends State<FormOpenDonasi> {
+class FormOpenDonasiState extends State<FormOpenDonasi> {
   final _formKey = GlobalKey<FormState>();
 
-  String? judul = " ";
+  String judul = " ";
 
-  String? deskripsi = " ";
-  String? targetDonasi = " ";
+  String deskripsi = " ";
+  String targetDonasi = " ";
 
-  Future<void> submit(BuildContext context) async {
-    final response = await http.post(Uri.parse(''),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        body: jsonEncode(<String, dynamic>{
+  submit(BuildContext context) async {
+    final request = Provider.of<CookieRequest>(context, listen: false);
+
+    final response = await request.postJson(
+        'https://jejakarbon.up.railway.app/form-pembuatan-donasi/open-donasi-flutter',
+        jsonEncode({
           'judul': judul,
           'deskripsi': deskripsi,
           'target': targetDonasi,
         }));
-    print(response.body);
   }
 
   Widget _buildJudul() {
@@ -93,6 +96,7 @@ class FormArtikelState extends State<FormOpenDonasi> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Buka Donasi")),
+        drawer: buildDrawer(context),
         body: SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.all(24),
@@ -112,6 +116,7 @@ class FormArtikelState extends State<FormOpenDonasi> {
                     ),
                     //color: Colors.blue,
                     onPressed: () {
+                      Provider.of<CookieRequest>(context, listen: false);
                       if (_formKey.currentState?.validate() ?? true) {
                         showConfirmDialog(context);
                       }
@@ -125,6 +130,8 @@ class FormArtikelState extends State<FormOpenDonasi> {
   }
 
   showConfirmDialog(BuildContext context) {
+    Provider.of<CookieRequest>(context, listen: false);
+
     // set up the buttons
     Widget cancelButton = TextButton(
       child: const Text("Tidak"),
@@ -163,11 +170,12 @@ class FormArtikelState extends State<FormOpenDonasi> {
   }
 
   showAlertDialog(BuildContext context) {
+    Provider.of<CookieRequest>(context, listen: false);
     // set up the button
     Widget okButton = TextButton(
       child: const Text("Ok"),
       onPressed: () {
-        // Navigator.pushNamed(context, '/artikel');
+        Navigator.of(context).pop();
       },
     );
 

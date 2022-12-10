@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         title: 'Jejakarbon',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // This is the theme of your application.
           //

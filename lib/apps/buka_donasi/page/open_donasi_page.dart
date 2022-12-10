@@ -1,11 +1,9 @@
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/util/fetch_daftar_donasi.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:jejakarbon_flutter/apps/buka_donasi/page/form_open_donasi.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/form_buka_donasi.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
 
 void main() {
@@ -30,9 +28,13 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
         ),
         drawer: buildDrawer(context),
         body: FutureBuilder(
-            future: fetchDaftarDonasiList(),
+            future: request.jsonData["organization"]
+                ? fetchDaftarDonasiListUser(request.jsonData["username"])
+                : fetchDaftarDonasiList(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
+                // print(snapshot);
+
                 return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.hasData) {
@@ -237,7 +239,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) => FormOpenDonasi())));
+                                    builder: ((context) => BukaDonasiForm())));
                           },
                           child: const Text(
                             'Open donasi',
