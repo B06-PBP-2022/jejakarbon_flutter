@@ -2,14 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/footer/footer.dart';
-import 'package:jejakarbon_flutter/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:jejakarbon_flutter/apps/homepage/homePage.dart';
 
 class LoginPage extends StatefulWidget {
-  static const routeName = '/login';
 
   const LoginPage({super.key});
 
