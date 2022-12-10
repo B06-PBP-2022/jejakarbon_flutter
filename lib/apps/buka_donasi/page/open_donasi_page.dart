@@ -5,6 +5,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/page/form_buka_donasi.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
+import 'package:jejakarbon_flutter/apps/pembayaran/payment.dart';
 
 void main() {
   runApp(const BukaDonasiPage());

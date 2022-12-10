@@ -42,6 +42,8 @@ dependencies:
   getwidget: ^3.0.1
   accordion: ^2.5.1
   badges: ^2.0.3
+  footer: ^0.0.4
+  carousel_slider: ^4.2.0
   intl: ^0.17.0
 
 dev_dependencies:
@@ -78,6 +80,11 @@ flutter:
     - assets/images/linkaja.png
     - assets/images/lain.png
     - assets/images/ovo.png
+    - assets/images/logo_small.png
+    - assets/images/main_illustration.png
+    - assets/images/calculate.png
+    - assets/images/donate.png
+    - assets/images/faq.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -62,19 +62,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -108,23 +95,39 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 100),
+            Container(
+              child: Image.asset(
+                'assets/images/main_illustration.png',
+                fit: BoxFit.contain,
+                width: 300,
+              ),
+            ),
+            SizedBox(height: 30,),
             const Text(
-              'You have pushed the button this many times:',
+              "Track your Carbon Footprint and donate to nature",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const Text(
+              "for a better future!",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
             ),
+            SizedBox(height: 50),
+            const Text(
+              "Fitur JejaKarbon",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.green
+              ),
+            ),
+            Column(
+              
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
