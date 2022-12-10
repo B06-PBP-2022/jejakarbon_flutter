@@ -1,13 +1,11 @@
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/util/fetch_daftar_donasi.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:jejakarbon_flutter/apps/buka_donasi/page/form_open_donasi.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/form_buka_donasi.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
-import 'package:jejakarbon_flutter/apps/pembayaran/payment.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/detail.dart';
 
 void main() {
   runApp(const BukaDonasiPage());
@@ -31,9 +29,13 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
         ),
         drawer: buildDrawer(context),
         body: FutureBuilder(
-            future: fetchDaftarDonasiList(),
+            future: request.jsonData["organization"]
+                ? fetchDaftarDonasiListUser(request.jsonData["username"])
+                : fetchDaftarDonasiList(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
+                // print(snapshot);
+
                 return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.hasData) {
@@ -41,8 +43,9 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                     children: const [
                       Text(
                         "Tidak ada Event Donasi yang dibuka :(",
-                        style:
-                            TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 89, 216, 106),
+                            fontSize: 20),
                       ),
                       SizedBox(height: 8),
                     ],
@@ -52,13 +55,12 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => Container(
                             margin: const EdgeInsets.all(15.0),
-                            padding: const EdgeInsets.all(3.0),
+                            padding: const EdgeInsets.all(15.0),
                             width: 300,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                color: Color.fromARGB(255, 145, 209, 147),
-                                border:
-                                    Border.all(color: Colors.green.shade200)),
+                                color: Color.fromARGB(255, 198, 236, 209),
+                                border: Border.all(color: Colors.green)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.min,
@@ -66,8 +68,16 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                 Text(
                                   "${snapshot.data![index].fields.temaKegiatan}",
                                   style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    color: Colors.black,
                                     fontSize: 25.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "${snapshot.data![index].fields.tanggalPembuatan}",
+                                  style: const TextStyle(
+                                    color: Colors.black26,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -76,16 +86,16 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                   "${snapshot.data![index].fields.deskripsi}",
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    color: Colors.black,
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),
                                 const SizedBox(height: 20),
                                 Text(
-                                  "Total dana yang terkumpul: \n ${snapshot.data![index].fields.totalDonasiTerkumpul} / ${snapshot.data![index].fields.targetDonasi}",
+                                  "Total dana yang terkumpul: \nRp.${snapshot.data![index].fields.totalDonasiTerkumpul} / Rp.${snapshot.data![index].fields.targetDonasi}",
                                   style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    color: Colors.black,
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -100,12 +110,10 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                               style: ButtonStyle(
                                                 backgroundColor:
                                                     MaterialStateProperty.all<
-                                                            Color>(
-                                                        Colors.green.shade100),
+                                                        Color>(Colors.green),
                                                 foregroundColor:
                                                     MaterialStateProperty.all<
-                                                            Color>(
-                                                        Colors.green.shade800),
+                                                        Color>(Colors.white),
                                                 overlayColor:
                                                     MaterialStateProperty
                                                         .resolveWith<Color?>(
@@ -114,7 +122,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                         MaterialState
                                                             .hovered)) {
                                                       return Colors
-                                                          .green.shade700
+                                                          .green.shade100
                                                           .withOpacity(0.04);
                                                     }
                                                     if (states.contains(
@@ -124,14 +132,24 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                             MaterialState
                                                                 .pressed)) {
                                                       return Colors
-                                                          .green.shade700
+                                                          .green.shade100
                                                           .withOpacity(0.12);
                                                     }
                                                     return null; // Defer to the widget's default.
                                                   },
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          DonasiDetailPage(
+                                                              detailEvent:
+                                                                  snapshot.data![
+                                                                      index])),
+                                                );
+                                              },
                                               child: const Text('Detail')),
                                         ],
                                       )
@@ -143,12 +161,10 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                               style: ButtonStyle(
                                                 backgroundColor:
                                                     MaterialStateProperty.all<
-                                                            Color>(
-                                                        Colors.green.shade100),
+                                                        Color>(Colors.white),
                                                 foregroundColor:
                                                     MaterialStateProperty.all<
-                                                            Color>(
-                                                        Colors.green.shade800),
+                                                        Color>(Colors.green),
                                                 overlayColor:
                                                     MaterialStateProperty
                                                         .resolveWith<Color?>(
@@ -157,7 +173,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                         MaterialState
                                                             .hovered)) {
                                                       return Colors
-                                                          .green.shade700
+                                                          .green.shade600
                                                           .withOpacity(0.04);
                                                     }
                                                     if (states.contains(
@@ -167,7 +183,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                             MaterialState
                                                                 .pressed)) {
                                                       return Colors
-                                                          .green.shade700
+                                                          .green.shade600
                                                           .withOpacity(0.12);
                                                     }
                                                     return null; // Defer to the widget's default.
@@ -185,12 +201,10 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                               style: ButtonStyle(
                                                 backgroundColor:
                                                     MaterialStateProperty.all<
-                                                            Color>(
-                                                        Colors.green.shade100),
+                                                        Color>(Colors.green),
                                                 foregroundColor:
                                                     MaterialStateProperty.all<
-                                                            Color>(
-                                                        Colors.green.shade800),
+                                                        Color>(Colors.white),
                                                 overlayColor:
                                                     MaterialStateProperty
                                                         .resolveWith<Color?>(
@@ -199,7 +213,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                         MaterialState
                                                             .hovered)) {
                                                       return Colors
-                                                          .green.shade700
+                                                          .green.shade100
                                                           .withOpacity(0.04);
                                                     }
                                                     if (states.contains(
@@ -209,14 +223,24 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                             MaterialState
                                                                 .pressed)) {
                                                       return Colors
-                                                          .green.shade700
+                                                          .green.shade100
                                                           .withOpacity(0.12);
                                                     }
                                                     return null; // Defer to the widget's default.
                                                   },
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          DonasiDetailPage(
+                                                              detailEvent:
+                                                                  snapshot.data![
+                                                                      index])),
+                                                );
+                                              },
                                               child: const Text('Detail')),
                                         ],
                                       ),
@@ -242,7 +266,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) => FormOpenDonasi())));
+                                    builder: ((context) => BukaDonasiForm())));
                           },
                           child: const Text(
                             'Open donasi',
@@ -255,12 +279,14 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                       : TextButton(
                           style: ButtonStyle(
                               minimumSize:
-                                  MaterialStateProperty.all(Size(100, 50)),
+                                  MaterialStateProperty.all(Size(30, 30)),
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.green)),
-                          onPressed: () {},
+                          onPressed: () {
+                            showAlertDialog(context);
+                          },
                           child: const Text(
-                            'Hanya organisasi yang dapat membuka event donasi',
+                            'Organization feature',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -285,7 +311,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                               builder: ((context) => LoginPage())));
                     },
                     child: const Text(
-                      'Login to add question!',
+                      'Login for access',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -294,5 +320,33 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                   ),
                 ),
               ));
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Organization feature"),
+      content:
+          Text("Hanya akun bertipe organisasi yang dapat membuka forum donasi"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
