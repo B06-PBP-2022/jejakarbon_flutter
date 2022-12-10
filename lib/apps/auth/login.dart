@@ -2,14 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/footer/footer.dart';
-import 'package:jejakarbon_flutter/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:jejakarbon_flutter/apps/homepage/homePage.dart';
 
 class LoginPage extends StatefulWidget {
-  static const routeName = '/login';
 
   const LoginPage({super.key});
 
@@ -35,6 +34,19 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Login"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 96, 183, 88),
+                  Color.fromARGB(255, 130, 230, 126),
+                ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         ),
         drawer: buildDrawer(context),
         body: FooterView(
