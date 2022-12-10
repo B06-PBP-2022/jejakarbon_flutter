@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
+import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 
 class MyListUnloginDrawer extends StatefulWidget {
   @override
@@ -15,6 +16,17 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
     return Column(
       children: [
         ListTile(
+          leading: const Icon(Icons.question_answer),
+          title: const Text('FAQ'),
+          onTap: () {
+            // Route ke faq page
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const FaqPage()),
+            );
+          },
+        ),
+        ListTile(
           leading: const Icon(Icons.login),
           title: const Text('login'),
           onTap: () {
@@ -27,7 +39,7 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
         ),
         ListTile(
           leading: const Icon(Icons.app_registration),
-          title: const Text('Refister'),
+          title: const Text('Register'),
           onTap: () {
             // Route ke login page
           },
