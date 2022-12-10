@@ -19,6 +19,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
       appBar: AppBar(
         title: const Text("Donation Payment"),
       ),
+      body: Center(
+        child:
+        Container(color: Colors.white38,)
+      )
     );
   }
 

@@ -174,7 +174,11 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                                   },
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context, MaterialPageRoute(builder: (context) => PaymentMethod())
+                                                );
+                                              },
                                               child: const Text('Donasi')),
                                           const SizedBox(width: 20),
                                           TextButton(
