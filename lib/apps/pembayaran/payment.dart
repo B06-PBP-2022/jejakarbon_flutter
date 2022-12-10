@@ -198,7 +198,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             child: TextFormField(
               controller: _controller,
               decoration: InputDecoration(
-                hintText: 'Masukkan nominal lainnyaa',
+                hintText: 'Masukkan nominal lainnya',
                 labelText: 'Nominal',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
