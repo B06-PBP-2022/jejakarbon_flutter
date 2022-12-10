@@ -34,6 +34,19 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Login"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 96, 183, 88),
+                  Color.fromARGB(255, 130, 230, 126),
+                ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         ),
         drawer: buildDrawer(context),
         body: FooterView(

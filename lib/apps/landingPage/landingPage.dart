@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 
