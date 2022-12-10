@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
-import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
@@ -78,9 +78,10 @@ class _FaqFormState extends State<FaqForm> {
                   backgroundColor: MaterialStateProperty.all(Colors.green)),
               onPressed: () async {
                 final response = await request.postJson(
-                    "https://jejakarbon.up.railway.app/faq/add-question/", jsonEncode({
-                  "question": question,
-                }));
+                    "https://jejakarbon.up.railway.app/faq/add-question/",
+                    jsonEncode({
+                      "question": question,
+                    }));
                 Navigator.pop(context);
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacement(
