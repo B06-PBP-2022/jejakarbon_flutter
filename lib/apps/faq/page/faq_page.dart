@@ -24,6 +24,19 @@ class _FaqPageState extends State<FaqPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Frequently Asked Questions"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 96, 183, 88),
+                  Color.fromARGB(255, 153, 231, 150),
+                ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         ),
         drawer: buildDrawer(context),
         // future builder berisi data watchlist
@@ -118,26 +131,25 @@ class _FaqPageState extends State<FaqPage> {
                                             SizedBox(height: 10,),
                                             request.loggedIn && request.jsonData["is_admin"] ?
                                             Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10),
                                               child: Align(
                                                 alignment: Alignment.bottomLeft,
                                                 child: TextButton(
                                                   style: ButtonStyle(
-                                                      minimumSize: MaterialStateProperty.all(Size(40, 40)),
                                                       backgroundColor:
-                                                          MaterialStateProperty.all(Colors.green)),
+                                                          MaterialStateProperty.all(Colors.white)),
                                                   onPressed: () {
-                                                    Navigator.push(context,
-                                                        MaterialPageRoute(builder: ((context) => const FaqFormAdmin())));
+                                                     Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) => FaqFormAdmin(
+                                                          faqs: snapshot.data![index]),
+                                                    ));
                                                   },
                                                   child: const Text(
                                                     'edit answer',
                                                     style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 16),
+                                                        color: Colors.green,
+                                                        ),
                                                   ),
                                                 ),
                                               ),
