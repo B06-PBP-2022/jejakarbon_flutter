@@ -1,13 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:jejakarbon_flutter/main.dart';
+import 'package:jejakarbon_flutter/components/footer/footer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:jejakarbon_flutter/components/drawer.dart';
+import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
+import 'package:footer/footer_view.dart';
+import 'package:jejakarbon_flutter/apps/homepage/homePage.dart';
 
 class LoginPage extends StatefulWidget {
-  static const routeName = '/login';
 
   const LoginPage({super.key});
 
@@ -33,9 +34,25 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Login"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 96, 183, 88),
+                  Color.fromARGB(255, 130, 230, 126),
+                ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
+          ),
+        ),
         ),
         drawer: buildDrawer(context),
-        body: SingleChildScrollView(
+        body: FooterView(
+          footer: buildFooter(context),
+          children: [
+            SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -121,10 +138,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-        floatingActionButton: Container(
-          padding: const EdgeInsets.only(left: 30),
+        Container(
+          padding: const EdgeInsets.only(left: 30, bottom: 0),
           child: Align(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment.center,
             child: TextButton(
               style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all(Size(100, 50)),
@@ -136,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                 if (request.loggedIn) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(
-                        "Successfully logged in! Welcome ${request.getJsonData()} :)"),
+                        "Successfully logged in! Welcome ${request.getJsonData()['name']} :)"),
                   ));
 
                   Navigator.pushReplacement(
@@ -159,6 +176,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ));
+        )
+        ],), 
+        );
   }
 }
