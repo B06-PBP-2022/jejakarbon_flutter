@@ -1,8 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 
 Future<List<DaftarDonasi>> fetchDaftarDonasiList() async {
   var url = Uri.parse(
@@ -15,7 +13,7 @@ Future<List<DaftarDonasi>> fetchDaftarDonasiList() async {
     },
   );
 
-  print(response.body);
+  // print(response.body);
 
   // melakukan decode response menjadi bentuk json
   var data = jsonDecode(utf8.decode(response.bodyBytes));

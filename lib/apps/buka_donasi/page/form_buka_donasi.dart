@@ -159,10 +159,6 @@ class _BukaDonasiFormState extends State<BukaDonasiForm> {
                   minimumSize: MaterialStateProperty.all(Size(100, 50)),
                   backgroundColor: MaterialStateProperty.all(Colors.green)),
               onPressed: () async {
-                print("Masuk");
-                print(judul);
-                print(deskripsi);
-                print(targetDonasi);
                 final response = await request.postJson(
                     "https://jejakarbon.up.railway.app/form-pembuatan-donasi/open-donasi-flutter/",
                     jsonEncode({
