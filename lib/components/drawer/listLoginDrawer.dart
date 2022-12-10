@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/landingPage/landingPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/profile/page/profile.dart';
-import 'package:jejakarbon_flutter/main.dart';
+import 'package:jejakarbon_flutter/apps/homepage/homePage.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
 
@@ -78,7 +78,7 @@ class _MyListLoginDrawerState extends State<MyListLoginDrawer> {
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => LandingPage()),
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
