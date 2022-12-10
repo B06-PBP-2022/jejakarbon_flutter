@@ -1,4 +1,5 @@
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
+import 'package:jejakarbon_flutter/apps/faq/page/faq_admin.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_form.dart';
 import 'package:jejakarbon_flutter/apps/faq/util/fetch_faq.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,8 @@ class _FaqPageState extends State<FaqPage> {
                               child: Accordion(
                                 maxOpenSections: 2,
                                 headerBackgroundColor:
-                                    Color.fromARGB(255, 119, 130, 119),
+                                    Color.fromARGB(255, 198, 236, 209),
+                                headerBorderRadius: 5,
                                 scaleWhenAnimating: true,
                                 openAndCloseAnimation: true,
                                 headerPadding: const EdgeInsets.symmetric(
@@ -60,8 +62,9 @@ class _FaqPageState extends State<FaqPage> {
                                     SectionHapticFeedback.heavy,
                                 sectionClosingHapticFeedback:
                                     SectionHapticFeedback.light,
-                                paddingListBottom: 2,
-                                paddingListTop: 2,
+                                paddingListBottom: 1,
+                                paddingListTop: 1,
+                                rightIcon: 	Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 20),
                                 children: [
                                   AccordionSection(
                                       isOpen: false,
@@ -69,7 +72,7 @@ class _FaqPageState extends State<FaqPage> {
                                         "${snapshot.data![index].fields.question}",
                                         style: const TextStyle(
                                             fontSize: 16.0,
-                                            color: Colors.white),
+                                            color: Colors.black),
                                       ),
                                       content: Column(children: [
                                         Container(
@@ -111,7 +114,35 @@ class _FaqPageState extends State<FaqPage> {
                                                 "${snapshot.data![index].fields.answer}",
                                                 overflow: TextOverflow.visible,
                                               ),
-                                            )
+                                            ),
+                                            SizedBox(height: 10,),
+                                            request.loggedIn && request.jsonData["is_admin"] ?
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                              child: Align(
+                                                alignment: Alignment.bottomLeft,
+                                                child: TextButton(
+                                                  style: ButtonStyle(
+                                                      minimumSize: MaterialStateProperty.all(Size(40, 40)),
+                                                      backgroundColor:
+                                                          MaterialStateProperty.all(Colors.green)),
+                                                  onPressed: () {
+                                                    Navigator.push(context,
+                                                        MaterialPageRoute(builder: ((context) => const FaqFormAdmin())));
+                                                  },
+                                                  child: const Text(
+                                                    'edit answer',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 16),
+                                                  ),
+                                                ),
+                                              ),
+                                            ) :
+                                            Container()
                                           ],
                                         )
                                       ]))
@@ -122,7 +153,7 @@ class _FaqPageState extends State<FaqPage> {
             }
           },
         ),
-        floatingActionButton: request.loggedIn
+        floatingActionButton: request.loggedIn && !request.jsonData["is_admin"]
             ? Container(
                 padding: const EdgeInsets.only(left: 30),
                 child: Align(
@@ -137,7 +168,7 @@ class _FaqPageState extends State<FaqPage> {
                           MaterialPageRoute(builder: ((context) => FaqForm())));
                     },
                     child: const Text(
-                      'Ask a question here',
+                      '+',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -146,7 +177,8 @@ class _FaqPageState extends State<FaqPage> {
                   ),
                 ),
               )
-            : Container(
+            : ( !request.loggedIn ?
+              Container(
                 padding: const EdgeInsets.only(left: 30),
                 child: Align(
                   alignment: Alignment.bottomCenter,
@@ -170,6 +202,10 @@ class _FaqPageState extends State<FaqPage> {
                     ),
                   ),
                 ),
-              ));
+              ) :
+              Container(
+                // admin tidak bisa menambahkan pertanyaan
+              )
+        ));
   }
 }

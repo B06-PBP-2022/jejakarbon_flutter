@@ -1,10 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/components/footer/footer.dart';
 import 'package:jejakarbon_flutter/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
+import 'package:footer/footer_view.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login';
@@ -35,7 +37,10 @@ class _LoginPageState extends State<LoginPage> {
           title: const Text("Login"),
         ),
         drawer: buildDrawer(context),
-        body: SingleChildScrollView(
+        body: FooterView(
+          footer: buildFooter(context),
+          children: [
+            SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -121,10 +126,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-        floatingActionButton: Container(
-          padding: const EdgeInsets.only(left: 30),
+        Container(
+          padding: const EdgeInsets.only(left: 30, bottom: 0),
           child: Align(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment.center,
             child: TextButton(
               style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all(Size(100, 50)),
@@ -136,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                 if (request.loggedIn) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(
-                        "Successfully logged in! Welcome ${request.getJsonData()} :)"),
+                        "Successfully logged in! Welcome ${request.getJsonData()['name']} :)"),
                   ));
 
                   Navigator.pushReplacement(
@@ -159,6 +164,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ));
+        )
+        ],), 
+        );
   }
 }

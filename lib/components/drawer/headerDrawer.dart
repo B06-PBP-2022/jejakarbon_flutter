@@ -14,7 +14,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
     return Container(
       color: Colors.green[700],
       width: double.infinity,
-      height: 200,
+      height: 300,
       padding: const EdgeInsets.only(top: 20.0),
       child: !request.loggedIn
           ? Column(
@@ -41,6 +41,36 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
                     fontSize: 14,
                   ),
                 ),
+                SizedBox(height: 20,),
+                Column(
+                children: const [
+                  Text(
+                    "Contributors: ",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Daffa Ilham Restupratama',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Dipa Alhaza',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Griselda Neysa Sadiya',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Pantun Elfreddy Sihombing',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Rania Maharani Narendra',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(height: 20,)
+                ],
+              )
               ],
             )
           : Column(
