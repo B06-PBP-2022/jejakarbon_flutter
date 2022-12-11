@@ -4,6 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile.dart';
 
 class MyListUnloginDrawer extends StatefulWidget {
   @override
@@ -48,7 +49,18 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
               MaterialPageRoute(builder: (context) => RegisterPage()),
             );
           },
-        )
+        ),
+        ListTile(
+          leading: const Icon(Icons.account_circle),
+          title: const Text('Profil'),
+          onTap: () {
+            // Route ke main
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          },
+        ),
       ],
     );
   }
