@@ -130,13 +130,18 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                   ),
                   SizedBox(height: 20,),
                   Container(
-                    padding: const EdgeInsets.only(left: 30),
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: TextButton(
                         style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(Size(100, 50)),
-                            backgroundColor: MaterialStateProperty.all(Colors.green)),
+                            minimumSize: MaterialStateProperty.all(Size(150, 50)),
+                            backgroundColor: MaterialStateProperty.all(Colors.green),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              )
+                            )  
+                          ),
                         onPressed: () async {
                           final response = await request.postJson(
                               "https://jejakarbon.up.railway.app/faq/edit-question/${widget.faqs.pk}/",
@@ -162,13 +167,18 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                   ),
                   SizedBox(height: 10,),
                   Container(
-                    padding: const EdgeInsets.only(left: 30),
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: TextButton(
                         style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(Size(100, 50)),
-                            backgroundColor: MaterialStateProperty.all(Colors.green)),
+                            minimumSize: MaterialStateProperty.all(Size(150, 50)),
+                            backgroundColor: MaterialStateProperty.all(Colors.green),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                            )  
+                        ),  
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
@@ -177,6 +187,41 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                         },
                         child: const Text(
                           'Cancel',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Container(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: TextButton(
+                        style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(Size(150, 50)),
+                            backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 189, 54, 27)),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                            )  
+                        ),  
+                        onPressed: () async {
+                          final response = await request.postJson(
+                          "https://jejakarbon.up.railway.app/faq/delete-question/${widget.faqs.pk}/",
+                          jsonEncode({
+                          }));
+                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const FaqPage()),
+                          );
+                        },
+                        child: const Text(
+                          'Delete',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
