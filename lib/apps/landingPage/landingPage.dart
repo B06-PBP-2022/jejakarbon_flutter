@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
+import 'package:jejakarbon_flutter/apps/auth/register.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 
 class LandingPage extends StatefulWidget {
@@ -20,6 +21,14 @@ class _LandingPage extends State<LandingPage> {
             Container(
               child: Image.asset(
                 'assets/images/main_illustration.png',
+                fit: BoxFit.contain,
+                width: 300,
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Image.asset(
+                'assets/images/logoWithTulisan.png',
                 fit: BoxFit.contain,
                 width: 300,
               ),
@@ -69,7 +78,7 @@ class _LandingPage extends State<LandingPage> {
               onPressed: (){
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => RegisterPage()),
                 );
               },
               child: const Text(
