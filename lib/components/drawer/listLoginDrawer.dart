@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/apps/landingPage/landingPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:jejakarbon_flutter/apps/profile/page/profile.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile_page.dart';
 import 'package:jejakarbon_flutter/apps/homepage/homePage.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
