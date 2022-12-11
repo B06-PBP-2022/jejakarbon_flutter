@@ -1,11 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/apps/auth/register.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 
 class MyListUnloginDrawer extends StatefulWidget {
+  const MyListUnloginDrawer({super.key});
+
   @override
   _MyListUnloginDrawerState createState() => _MyListUnloginDrawerState();
 }
@@ -13,7 +15,6 @@ class MyListUnloginDrawer extends StatefulWidget {
 class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
     return Column(
       children: [
         ListTile(
@@ -34,7 +35,7 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
             // Route ke login page
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
+              MaterialPageRoute(builder: (context) => const LoginPage()),
             );
           },
         ),
@@ -45,7 +46,7 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
             // Route ke register page
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => RegisterPage()),
+              MaterialPageRoute(builder: (context) => const RegisterPage()),
             );
           },
         )
