@@ -17,15 +17,7 @@ class _LandingPage extends State<LandingPage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 100),
-            Container(
-              child: Image.asset(
-                'assets/images/main_illustration.png',
-                fit: BoxFit.contain,
-                width: 300,
-              ),
-            ),
-            SizedBox(height: 10),
+            SizedBox(height: 200),
             Container(
               child: Image.asset(
                 'assets/images/logoWithTulisan.png',
@@ -33,75 +25,74 @@ class _LandingPage extends State<LandingPage> {
                 width: 300,
               ),
             ),
-            SizedBox(height: 30,),
-            const Text(
-              "Track your Carbon Footprint and donate to nature for a better future!",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              textAlign: TextAlign.center,
-            ),      
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(height: 200),
+            SizedBox(
+              height: 30,
+            ),
             TextButton(
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(300,40)),
+                minimumSize: MaterialStateProperty.all(Size(300, 40)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),)),
-                backgroundColor: MaterialStateProperty.all(
-                  Colors.green
-                ),
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                )),
+                backgroundColor: MaterialStateProperty.all(Colors.green),
               ),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               },
               child: const Text(
-                "Login", 
+                "Login",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  ),
-                ),
-            ),
-            SizedBox(height: 10,),
-            TextButton(
-              style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(300,40)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),)),
-                backgroundColor: MaterialStateProperty.all(
-                  Colors.green
                 ),
               ),
-              onPressed: (){
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(300, 40)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                )),
+                backgroundColor: MaterialStateProperty.all(Colors.green),
+              ),
+              onPressed: () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => RegisterPage()),
                 );
               },
               child: const Text(
-                "Register", 
+                "Register",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  ),
                 ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: 
-        FloatingActionButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => FaqPage()),
-                );
-          },
-          child: const Icon(Icons.forum),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => FaqPage()),
+          );
+        },
+        child: const Icon(Icons.forum),
+      ),
     );
   }
 }
