@@ -1,4 +1,12 @@
 {
     "cmake.sourceDirectory": "${workspaceFolder}/linux",
+<<<<<<< HEAD
+    "launch": {
+    
+        "configurations": [],
+        "compounds": []
+    }
+=======
     "java.configuration.updateBuildConfiguration": "interactive"
+>>>>>>> 67d6f28f70a0b3b51790e18b55084f2bbd9dfc0f
 }
