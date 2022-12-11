@@ -1,23 +1,25 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
+import 'package:jejakarbon_flutter/apps/pembayaran/konfirmasiBayar.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/edit.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
 
-void main() {
-  runApp(const PaymentMethod());
-}
+
 
 class PaymentMethod extends StatefulWidget {
-  const PaymentMethod({Key? key}) : super(key: key);
+  const PaymentMethod({super.key, required this.detailEvent});
+
+  final DaftarDonasi detailEvent;
+
 
   @override
   State<StatefulWidget> createState() => _PaymentMethodState();
 }
 
 class _PaymentMethodState extends State<PaymentMethod> {
-
-  // _MyFormState(){
-  //   metodeDipilih = _metodebayarJson[];
-  // }
-
 
   @override
   String Nominal = "";
@@ -100,11 +102,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(height: 20),
+
           Container(
-            height: 45,
+            height: 40,
             width: double.infinity ,
-     
-            
             child: Column (
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -124,6 +125,27 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
           ),
           Container(
+            height: 35,
+            width: 300 ,
+            child: Column (
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Donasi untuk ${widget.detailEvent.fields.temaKegiatan}',
+                  style: (
+                    const TextStyle(
+                      color: Color.fromARGB(255, 139, 203, 127),
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w400,
+                    )
+                  ),
+                
+                ),
+                
+              ]
+            ),
+          ),
+          Container(
             height: 55,
             width: double.infinity,
 
@@ -132,7 +154,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget> [
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -148,7 +170,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -164,7 +186,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -192,7 +214,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget> [
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -212,7 +234,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -228,7 +250,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -361,7 +383,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     child: DropdownButton<String>(
                       
                       isDense: true,
-                      hint: new Text("Select Bank"),
+                      hint: new Text("Select payment method"),
                       value: metodeDipilih,
                       onChanged: (String? newValue) {
                         setState(() {
@@ -413,10 +435,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       foregroundColor: Color.fromARGB(255, 255, 255, 255)
                     ),
                     onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => konfirmasiPembayaran(nominal: _controller.text)));
                      
                     }, 
                     child: 
-                      Text("Lanjutkan pembayaran")
+                      Text("Lanjutkan pembayaran"),
+
                   ),
                 ),
               
