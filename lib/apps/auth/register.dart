@@ -22,6 +22,11 @@ class _RegisterPageState extends State<RegisterPage> {
   String name = "";
   String contact = "";
   bool organization = false;
+  List<Widget> types = <Widget>[
+    Text('Pribadi'),
+    Text('Organisasi'),
+  ];
+  final List<bool> _selected = <bool>[true, false];
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +61,28 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: 15,
                 ),
-                ToggleSwitch(
-                  minWidth: 90.0,
-                  cornerRadius: 20.0,
-                  activeBgColor: [Color.fromARGB(255, 61, 156, 65)!],
-                  activeFgColor: Colors.white,
-                  inactiveBgColor: Colors.grey,
-                  inactiveFgColor: Colors.white,
-                  initialLabelIndex: 0,
-                  totalSwitches: 2,
-                  labels: ['Organisasi', 'Pribadi'],
-                  radiusStyle: true,
-                  onToggle: (index) {
-                    organization = index! == 0 ? true : false;
+                ToggleButtons(
+                  direction: Axis.horizontal,
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  selectedBorderColor: Colors.green[700],
+                  selectedColor: Colors.white,
+                  fillColor: Colors.green[200],
+                  color: Colors.green[400],
+                  constraints: const BoxConstraints(
+                    minHeight: 40.0,
+                    minWidth: 80.0,
+                  ),
+                  isSelected: _selected,
+                  children: types,
+                  onPressed: (int index) {
+                    setState(() {
+                      // The button that is tapped is set to true, and the others to false.
+                      for (int i = 0; i < _selected.length; i++) {
+                        _selected[i] = i == index;
+                      }
+
+                      organization = index == 0 ? false : true;
+                    });
                   },
                 ),
                 SizedBox(
@@ -198,7 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     obscureText: true,
@@ -273,12 +287,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           minimumSize: MaterialStateProperty.all(Size(100, 40)),
                           backgroundColor:
                               MaterialStateProperty.all(Colors.green),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            )
-                          )    
-                        ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ))),
                       onPressed: () async {
                         final response = await request.postJson(
                             "https://jejakarbon.up.railway.app/auth/register/",
@@ -322,22 +335,23 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       'Sudah memiliki akun?',
-                      style: TextStyle(
-                          fontSize: 14, color: Colors.black),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()),
-                          );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
                       },
                       child: const Text(
                         ' Login',
