@@ -44,6 +44,7 @@ dependencies:
   badges: ^2.0.3
   footer: ^0.0.4
   carousel_slider: ^4.2.0
+  intl: ^0.17.0
   toggle_switch: ^2.0.1
 
 dev_dependencies:
