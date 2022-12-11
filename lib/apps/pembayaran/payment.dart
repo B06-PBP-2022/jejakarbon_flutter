@@ -436,10 +436,9 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => konfirmasiPembayaran(nominal: _controller.text)));
-                     
                     }, 
                     child: 
-                      Text("Lanjutkan pembayaran"),
+                      Text("Lakukan pembayaran"),
 
                   ),
                 ),
