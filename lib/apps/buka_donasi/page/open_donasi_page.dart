@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
 import 'package:jejakarbon_flutter/apps/pembayaran/payment.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/util/fetch_daftar_donasi.dart';
@@ -190,7 +191,8 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                               ),
                                               onPressed: () {
                                                 Navigator.push(
-                                                  context, MaterialPageRoute(builder: (context) => PaymentMethod())
+                                                  context, MaterialPageRoute(builder: (context) => PaymentMethod(detailEvent: snapshot.data![index])),
+                                                 
                                                 );
                                               },
                                               child: const Text('Donasi')),
