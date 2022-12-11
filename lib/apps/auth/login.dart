@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/auth/register.dart';
 import 'package:jejakarbon_flutter/components/footer/footer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -35,14 +36,14 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: const Text("Login"),
           flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 96, 183, 88),
                   Color.fromARGB(255, 130, 230, 126),
                 ],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(1.0, 0.0),
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
                 stops: [0.0, 1.0],
                 tileMode: TileMode.clamp),
           ),
@@ -128,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                       ],
                     ),
@@ -139,13 +140,18 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(left: 30, bottom: 0),
           child: Align(
             alignment: Alignment.center,
             child: TextButton(
               style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(100, 50)),
-                  backgroundColor: MaterialStateProperty.all(Colors.green)),
+                  minimumSize: MaterialStateProperty.all(Size(100, 40)),
+                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    )
+                  )  
+                ),
               onPressed: () async {
                 final response = await request.login(
                     "https://jejakarbon.up.railway.app/auth/login/",
@@ -172,12 +178,42 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18),
+                    fontSize: 14),
               ),
             ),
           ),
-        )
-        ],), 
-        );
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Belum memiliki akun?',
+              style: TextStyle(
+                  fontSize: 14, color: Colors.black),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterPage()),
+                  );
+              },
+              child: const Text(
+                ' Register',
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+      ],
+     ), 
+    );
   }
 }

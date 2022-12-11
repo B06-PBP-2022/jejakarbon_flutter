@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/auth/register.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
@@ -41,7 +42,11 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
           leading: const Icon(Icons.app_registration),
           title: const Text('Register'),
           onTap: () {
-            // Route ke login page
+            // Route ke register page
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => RegisterPage()),
+            );
           },
         )
       ],
