@@ -12,9 +12,9 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Container(
-      color: Colors.green[700],
+      color: Colors.green[400],
       width: double.infinity,
-      height: 300,
+      height: 200,
       padding: const EdgeInsets.only(top: 20.0),
       child: !request.loggedIn
           ? Column(
@@ -41,36 +41,9 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
                     fontSize: 14,
                   ),
                 ),
-                SizedBox(height: 20,),
-                Column(
-                children: const [
-                  Text(
-                    "Contributors: ",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Daffa Ilham Restupratama',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    'Dipa Alhaza',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    'Griselda Neysa Sadiya',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    'Pantun Elfreddy Sihombing',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    'Rania Maharani Narendra',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  SizedBox(height: 20,)
-                ],
-              )
+                SizedBox(
+                  height: 20,
+                ),
               ],
             )
           : Column(
