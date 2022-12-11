@@ -14,7 +14,7 @@ Footer buildFooter(BuildContext context) {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 10),
-              child: Image(
+              child: const Image(
                 image: AssetImage('assets/images/logo_small.png'),
               ),
             ),

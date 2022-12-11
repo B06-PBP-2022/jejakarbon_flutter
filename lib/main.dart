@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/landingPage/landingPage.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -34,9 +33,9 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.green,
         ),
-        home: LandingPage(),
+        home: const LandingPage(),
         routes: {
-          "/landing-page": (BuildContext context) => LandingPage(),
+          "/landing-page": (BuildContext context) => const LandingPage(),
         },
       ),
     );
