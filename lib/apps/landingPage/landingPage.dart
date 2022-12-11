@@ -25,6 +25,14 @@ class _LandingPage extends State<LandingPage> {
                 width: 300,
               ),
             ),
+            SizedBox(height: 10),
+            Container(
+              child: Image.asset(
+                'assets/images/logoWithTulisan.png',
+                fit: BoxFit.contain,
+                width: 300,
+              ),
+            ),
             SizedBox(height: 30,),
             const Text(
               "Track your Carbon Footprint and donate to nature for a better future!",
