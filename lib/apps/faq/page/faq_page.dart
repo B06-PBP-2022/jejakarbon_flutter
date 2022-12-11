@@ -3,6 +3,7 @@ import 'package:jejakarbon_flutter/apps/faq/page/faq_admin.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_form.dart';
 import 'package:jejakarbon_flutter/apps/faq/util/fetch_faq.dart';
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/landingPage/landingPage.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:accordion/accordion.dart';
 import 'package:accordion/controllers.dart';
@@ -177,7 +178,9 @@ class _FaqPageState extends State<FaqPage> {
                             MaterialStateProperty.all(Colors.green)),
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) => FaqForm())));
+                          MaterialPageRoute(builder: ((context) => FaqForm())
+                          )
+                        );
                     },
                     child: const Text(
                       '+',
@@ -190,30 +193,16 @@ class _FaqPageState extends State<FaqPage> {
                 ),
               )
             : ( !request.loggedIn ?
-              Container(
-                padding: const EdgeInsets.only(left: 30),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: TextButton(
-                    style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(100, 50)),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.green)),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => LoginPage())));
-                    },
-                    child: const Text(
-                      'Login to add question!',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ),
-                ),
+              FloatingActionButton.extended(
+                onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => LandingPage())
+                    )
+                  );
+                },
+                label: const Text('Login to ask'),
+                icon: const Icon(Icons.login),
+                backgroundColor: Colors.green,
               ) :
               Container(
                 // admin tidak bisa menambahkan pertanyaan
