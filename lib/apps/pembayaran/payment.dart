@@ -409,7 +409,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 156, 198, 152),
+                      backgroundColor: Color.fromARGB(255, 118, 188, 112),
                       foregroundColor: Color.fromARGB(255, 255, 255, 255)
                     ),
                     onPressed: () {
