@@ -6,28 +6,28 @@ import 'package:jejakarbon_flutter/apps/profile/page/profile_page.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:jejakarbon_flutter/apps/profile/util/fetch_profile.dart';
 
-class DonationHistoryPage extends StatefulWidget {
-  const DonationHistoryPage({super.key});
+class OpenedDonationPage extends StatefulWidget {
+  const OpenedDonationPage({super.key});
 
   @override
-  State<DonationHistoryPage> createState() => _DonationHistoryPageState();
+  State<OpenedDonationPage> createState() => _OpenedDonationPageState();
 }
 
-class _DonationHistoryPageState extends State<DonationHistoryPage> {
+class _OpenedDonationPageState extends State<OpenedDonationPage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Histori Donasi"),
+          title: const Text("Donasi yang Dibuka"),
           leading: BackButton(
             onPressed: () {
               Navigator.pop(context);
             },
           )),
       body: Center(
-        child: Column(children: const [Text("Histori Donasi")]),
+        child: Column(children: const [Text("Donasi yang Dibuka")]),
       ),
     );
   }
