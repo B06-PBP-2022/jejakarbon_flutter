@@ -64,6 +64,19 @@ class _BukaDonasiFormState extends State<EditDonasiForm> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Edit Donasi'),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 96, 183, 88),
+                    Color.fromARGB(255, 152, 249, 149),
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.clamp),
+            ),
+          ),
         ),
         drawer: buildDrawer(context),
         body: Form(
