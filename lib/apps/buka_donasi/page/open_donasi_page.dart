@@ -28,6 +28,19 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Buka Donasi"),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 96, 183, 88),
+                    Color.fromARGB(255, 153, 231, 150),
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.clamp),
+            ),
+          ),
         ),
         drawer: buildDrawer(context),
         body: FutureBuilder(
@@ -191,8 +204,13 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                               ),
                                               onPressed: () {
                                                 Navigator.push(
-                                                  context, MaterialPageRoute(builder: (context) => PaymentMethod(detailEvent: snapshot.data![index])),
-                                                 
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          PaymentMethod(
+                                                              detailEvent:
+                                                                  snapshot.data![
+                                                                      index])),
                                                 );
                                               },
                                               child: const Text('Donasi')),

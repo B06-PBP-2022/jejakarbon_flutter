@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/apps/auth/register.dart';
 import 'package:jejakarbon_flutter/apps/auth/login.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile_page.dart';
 
 class MyListUnloginDrawer extends StatefulWidget {
   const MyListUnloginDrawer({super.key});
@@ -49,7 +50,7 @@ class _MyListUnloginDrawerState extends State<MyListUnloginDrawer> {
               MaterialPageRoute(builder: (context) => const RegisterPage()),
             );
           },
-        )
+        ),
       ],
     );
   }

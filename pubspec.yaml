@@ -113,6 +113,8 @@ flutter:
     - assets/images/bri.png
     - assets/images/logoWithTulisan.png
     - assets/images/success.gif
+    - assets/images/background.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

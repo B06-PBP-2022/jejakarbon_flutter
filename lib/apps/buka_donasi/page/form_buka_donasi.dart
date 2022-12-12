@@ -18,8 +18,6 @@ class _BukaDonasiFormState extends State<BukaDonasiForm> {
   final _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
 
-  
-
   static const _locale = 'idr';
   String _formatNumber(String s) =>
       NumberFormat.decimalPattern(_locale).format(int.parse(s));
@@ -36,6 +34,19 @@ class _BukaDonasiFormState extends State<BukaDonasiForm> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Buka Donasi'),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 96, 183, 88),
+                    Color.fromARGB(255, 152, 249, 149),
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.clamp),
+            ),
+          ),
         ),
         drawer: buildDrawer(context),
         body: Form(
@@ -169,7 +180,7 @@ class _BukaDonasiFormState extends State<BukaDonasiForm> {
                       "deskripsi": deskripsi,
                       "target_donasi": targetDonasi,
                     }));
-                // print(response);
+
                 Navigator.pop(context);
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacement(

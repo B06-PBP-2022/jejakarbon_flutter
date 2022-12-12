@@ -14,10 +14,17 @@ class _LandingPage extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage( 
+              image: AssetImage('assets/images/background.png'),
+              fit: BoxFit.fill
+            )
+          ),
+        child: Center(
+          child: Column(
           children: <Widget>[
-            SizedBox(height: 200),
+            const SizedBox(height: 200),
             Container(
               child: Image.asset(
                 'assets/images/logoWithTulisan.png',
@@ -25,70 +32,93 @@ class _LandingPage extends State<LandingPage> {
                 width: 300,
               ),
             ),
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 60,
             ),
-            SizedBox(height: 200),
-            SizedBox(
-              height: 30,
-            ),
-            TextButton(
-              style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(300, 40)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                )),
-                backgroundColor: MaterialStateProperty.all(Colors.green),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              child: const Text(
-                "Login",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+            Container(
+              height: 40,
+              width: 150,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 55, 157, 46),
+                    Color.fromARGB(255, 130, 232, 126),
+                  ], 
                 ),
+                borderRadius: const BorderRadius.all(Radius.circular(25)),
+                boxShadow: [BoxShadow(
+                  color: Colors.green.withOpacity(0.2),
+                  spreadRadius: 4,
+                  blurRadius: 10,
+                  offset: const Offset(0,3),
+                )]
               ),
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
+                  },
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  )
+                )
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            TextButton(
-              style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(300, 40)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                )),
-                backgroundColor: MaterialStateProperty.all(Colors.green),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegisterPage()),
-                );
-              },
-              child: const Text(
-                "Register",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+            Container(
+              height: 40,
+              width: 150,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 55, 157, 46),
+                    Color.fromARGB(255, 130, 232, 126),
+                  ], 
                 ),
+                borderRadius: const BorderRadius.all(Radius.circular(25)),
+                boxShadow: [BoxShadow(
+                  color: Colors.green.withOpacity(0.2),
+                  spreadRadius: 4,
+                  blurRadius: 10,
+                  offset: const Offset(0,3),
+                )]
               ),
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RegisterPage()),
+                    );
+                  },
+                  child: const Text(
+                    "Register",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  )
+                )
             ),
           ],
         ),
+      )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => FaqPage()),
+            MaterialPageRoute(builder: (context) => const FaqPage()),
           );
         },
         child: const Icon(Icons.forum),
