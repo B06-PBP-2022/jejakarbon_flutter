@@ -44,17 +44,19 @@ class _MyListLoginDrawerState extends State<MyListLoginDrawer> {
             );
           },
         ),
-        ListTile(
-          leading: const Icon(Icons.calculate),
-          title: const Text('Kalkulator Carbon'),
-          onTap: () {
-            // Route ke faq page
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const KalkulatorPage()),
-            );
-          },
-        ),
+        if (request.jsonData["organization"] == false) ...[
+          ListTile(
+            leading: const Icon(Icons.calculate),
+            title: const Text('Kalkulator Carbon'),
+            onTap: () {
+              // Route ke faq page
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const KalkulatorPage()),
+              );
+            },
+          ),
+        ],
         ListTile(
           leading: const Icon(Icons.question_answer),
           title: const Text('FAQ'),
