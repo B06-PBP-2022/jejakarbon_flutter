@@ -80,12 +80,6 @@ class _CarbonHistoryPageState extends State<CarbonHistoryPage> {
                                       ),
                                     ),
                                   ),
-                                  // ListTile(
-                                  //   title:
-                                  //       Text("${snapshot.data![index].fields.usage}"),
-                                  //   subtitle: Text(
-                                  //       "Besar karbon: ${snapshot.data![index].fields.carbonPrint.toStringAsFixed(2)} kilogram"),
-                                  // ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
