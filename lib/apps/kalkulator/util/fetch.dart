@@ -1,29 +1,39 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:jejakarbon_flutter/apps/kalkulator/model/kalkulator.dart';
+import 'package:jejakarbon_flutter/apps/kalkulator/model/kalkulatorqt.dart';
+import 'package:jejakarbon_flutter/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
- Future<List<CarbonDetail>> fetchWatchList() async {
-        var url = Uri.parse('https://jejakarbon.up.railway.app/kalkulator/kalkulator-json/');
-        var response = await http.get(
-        url,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-        },
-        );
+// Mengambil data kalkulasi terakhir yang dilakukan user
+Future<List<UserLastCalculation>> fetchLastCalculation(
+    CookieRequest request) async {
+  var response = await request
+      .get('https://jejakarbon.up.railway.app/kalkulator/get_total_carbon/');
 
-        // melakukan decode response menjadi bentuk json
-        var data = jsonDecode(utf8.decode(response.bodyBytes));
+  print(response);
 
-        // melakukan konversi data json menjadi object ToDo
-        List<CarbonDetail> listOfFaq = [];
-        for (var d in data) {
-        if (d != null) {
-            listOfFaq.add(CarbonDetail.fromJson(d));
-        }
-        }
+  List<UserLastCalculation> lastCalculation = [];
+  lastCalculation.add(UserLastCalculation(
+      result: response['carbon_print_total'],
+      sum: response['hasil_kalkulasi']));
+  return lastCalculation;
+}
 
-        return listOfFaq;
+// Mengambil data json khusus Carbon Detail
+Future<List<CarbonDetail>> fetchCarbonDetail(CookieRequest request) async {
+  var responseCarbon = await request
+      .get('https://jejakarbon.up.railway.app/kalkulator/kalkulator-json/');
+  // print(response);
+
+  // melakukan konversi data json menjadi object ToDo
+  List<CarbonDetail> listOfCarbonDetail = [];
+  for (var d in responseCarbon) {
+    print(d.toString());
+    if (d != null) {
+      listOfCarbonDetail.add(CarbonDetail.fromJson(d));
     }
+  }
+
+  return listOfCarbonDetail;
+}
