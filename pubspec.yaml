@@ -31,6 +31,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -47,6 +49,7 @@ dependencies:
   intl: ^0.17.0
   toggle_switch: ^2.0.1
   flutter_launcher_icons: ^0.11.0
+  confetti: ^0.6.0
 
 flutter_icons:
   android: true
@@ -109,6 +112,7 @@ flutter:
     - assets/images/bca.png
     - assets/images/bri.png
     - assets/images/logoWithTulisan.png
+    - assets/images/success.gif
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
