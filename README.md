@@ -1,6 +1,10 @@
 # PBP Proyek Akhir Semester Kelompok B-06
+[![Staging](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/staging.yml/badge.svg)](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/staging.yml)
+[![Pre-Release](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/pre-release.yml/badge.svg)](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/pre-release.yml)
+[![Release](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/release.yml/badge.svg)](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/release.yml)
+[![Build status](https://build.appcenter.ms/v0.1/apps/8e0e809d-536e-4e2d-a7fe-2c7cd087b39f/branches/main/badge)](https://appcenter.ms)
 
-## Nama-nama anggota kelompok
+## 🧑‍💻 Nama-nama anggota kelompok 🧑‍💻
 Daffa Ilham Restupratama - 2106751013
 
 Dipa Alhaza - 2106751543
@@ -11,15 +15,20 @@ Pantun Elfreddy Sihombing - 2106751612
 
 Rania Maharani Narendra - 2106650222
 
+
 ## Deskripsi aplikasi (nama aplikasi, fungsi aplikasi, dan peran/aktor pengguna aplikasi)
 ### JejaKarbon
+
 [![logo_footer](https://user-images.githubusercontent.com/87572562/199491295-5107f811-6035-4ffd-8ad9-cc6ab8bf2727.png)]()
+
+### 🚀 Link Aplikasi 🚀
+Aplikasi ini hanya untuk Android dan dapat diunduh di bagian [releases](https://github.com/B06-PBP-2022/jejakarbon_flutter/releases/tag/1.0.0%2B1) atau melalui Microsoft Visual Studio [App Center](https://install.appcenter.ms/orgs/b06-pbp-2022/apps/jejakarbon/distribution_groups/public).
 
 Aplikasi yang akan dikembangkan bernama Jejakarbon. JejaKarbon adalah *environmental web application* dimana kita bisa melakukan donasi kepada perusahaan Go Green dan melakukan tracker carbon footprint yang dihasilkan oleh pengguna, khususnya tracker penggunaan transportasi. JejaKarbon akan mengembalikan jumlah perkiraan carbon footprint yang dihasilkan oleh pengguna. 
 
 Untuk JejaKarbon, carbon footprint yang dikalkulasi berasal dari penggunaan motor, mobil, dan listrik. Penggunaan motor dan mobil dihitung berdasarkan jumlah jarak tempuh dan konsumsi BBM yang dilakukan oleh user, sedangkan listrik berdasarkan jumlah kWh perbulannya.
 
-### Background
+### 📖 Background 📖
 Carbon Footprint atau jejak karbon adalah jumlah emisi karbon dioksida yang berkaitan dengan aktivitas dari seseorang ataupun suatu objek seperti gedung, pabrik, kendaraan, dan sebagainya. Emisi tersebut adalah hasil dari pembakaran bahan bakar fosil di bidang manufaktur, pemanasan, dan transportasi. 
 
 Banyak dampak yang muncul karena carbon footprint, seperti perubahan iklim yang bisa mengarah ke pemanasan global, polusi udara, hujan asam, mencairnya es di kutub, dan pengasaman pesisir serta laut. Jadi, emisi karbon ini sangat berdampak bagi lingkungan kita.
@@ -31,12 +40,12 @@ Untuk mengurangi dampak dari Carbon Footprint,  kita harus bekerja sama saling m
 Sumber Pendukung:
 [Why Is a Carbon Footprint Bad for the Environment? All You Need to Know](https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice)
 
-### Manfaat Aplikasi
+### 👍 Manfaat Aplikasi 👍
 Dengan adanya JejaKarbon, diharapkan:
 - Pengguna bisa mengetahui jumlah carbon footprint mereka, hal ini dilakukan untuk meningkatkan awareness sebanyak apa carbon footprint yang telah dihasilkan dari penggunaan transportasi ataupun listrik sehari-hari pengguna.
 - Pengguna bisa melakukan donasi, membantu perusahaan penggerak go green untuk menghijaukan lingkungan.
 
-### Role Pengguna dalam JejaKarbon
+### 🧑 Role Pengguna dalam JejaKarbon 🧑
 1) User nonlogin:
 - Membuat akun
 - melihat faq
@@ -54,10 +63,11 @@ Dengan adanya JejaKarbon, diharapkan:
 - Melihat progress akun/membuka profile
 4) Admin:
 - menjawab faq
+- menghapus question
 - sama seperti user login kecuali bertanya pada faq
 
-## Daftar fitur atau modul yang diimplementasikan beserta kontrak kinerja per anggota kelompok
-1) Halaman utama, Halaman login/logout, Register, faq (**Rania Maharani Narendra**)
+## 🔨Daftar fitur atau modul yang diimplementasikan beserta kontrak kinerja per anggota kelompok 🔨
+1) Landing Page, Halaman login/logout, Register, faq (**Rania Maharani Narendra**)
 - handle user login
 - Daftar frequently asked questions (get)
 - form faq (post)
@@ -87,7 +97,7 @@ menghitung carbon footprint yang dihasilkan dari motor, mobil, dan listrik. Untu
 - Daftar produksi carbon footprint yang dihasilkan (get) => dari input data transportasi
 - Daftar donasi yang telah dilakukan (get) => dari form ikut donasi/pembayaran
 
-4) Halaman penambahan project (**Dipa Alhaza**)
+4) Halaman utama, Halaman penambahan project (**Dipa Alhaza**)
 - Form pembukaan donasi (post)
 - Daftar seluruh donasi yang terdaftar (get)
 
