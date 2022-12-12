@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jejakarbon_flutter/apps/profile/page/security.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/security_page.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 
-import 'package:jejakarbon_flutter/apps/profile/page/profile_edit.dart';
-import 'package:jejakarbon_flutter/apps/profile/page/donation_history.dart';
-import 'package:jejakarbon_flutter/apps/profile/page/carbon_history.dart';
-import 'package:jejakarbon_flutter/apps/profile/page/opened_donation.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile_edit_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/donation_history_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/carbon_history_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/opened_donation_page.dart';
 
 import 'package:jejakarbon_flutter/apps/profile/util/fetch_profile.dart';
 
@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       drawer: buildDrawer(context),
       body: FutureBuilder(
-          future: fetchProfile(request),
+          future: fetchProfileData(request),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -135,10 +135,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ],
                               const SizedBox(height: 20),
-                              ProfileButton(
-                                text: 'Keamanan',
-                              ),
-                              const SizedBox(height: 20),
+                              // ProfileButton(
+                              //   text: 'Keamanan',
+                              // ),
+                              // const SizedBox(height: 20),
                             ],
                           ),
                         ),
