@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
 import 'package:jejakarbon_flutter/apps/pembayaran/payment.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/util/fetch_daftar_donasi.dart';
@@ -34,19 +35,16 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                 ? fetchDaftarDonasiListUser(request.jsonData["username"])
                 : fetchDaftarDonasiList(),
             builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
-                // print(snapshot);
-
+              if (snapshot.data == null || snapshot.data!.length == 0) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                if (!snapshot.hasData) {
+                if (!snapshot.hasData || snapshot.data!.length == 0) {
                   return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        "Tidak ada Event Donasi yang dibuka :(",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 89, 216, 106),
-                            fontSize: 20),
+                        "Tidak ada daftar event donasi yang dibuat",
+                        style: TextStyle(color: Colors.black26, fontSize: 21),
                       ),
                       SizedBox(height: 8),
                     ],
@@ -193,7 +191,8 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                               ),
                                               onPressed: () {
                                                 Navigator.push(
-                                                  context, MaterialPageRoute(builder: (context) => PaymentMethod())
+                                                  context, MaterialPageRoute(builder: (context) => PaymentMethod(detailEvent: snapshot.data![index])),
+                                                 
                                                 );
                                               },
                                               child: const Text('Donasi')),

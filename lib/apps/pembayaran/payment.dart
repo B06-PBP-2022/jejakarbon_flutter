@@ -1,21 +1,81 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
+import 'package:jejakarbon_flutter/apps/pembayaran/konfirmasiBayar.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/edit.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
 
 
-void main() {
-  runApp(const PaymentMethod());
-}
 
 class PaymentMethod extends StatefulWidget {
-  const PaymentMethod({Key? key}) : super(key: key);
+  const PaymentMethod({super.key, required this.detailEvent});
+
+  final DaftarDonasi detailEvent;
+
 
   @override
   State<StatefulWidget> createState() => _PaymentMethodState();
 }
 
 class _PaymentMethodState extends State<PaymentMethod> {
+
   @override
   String Nominal = "";
   final _controller = TextEditingController();
+  String? metodeDipilih;
+  List<Map> _metodebayarJson = [
+      {
+        "id": '0',
+        "image": "assets/images/logo-gopay-vector.png",
+        "name": "Gopay",
+      },
+      {
+        'id': '1',
+        'image':'assets/images/shopeepay.png',
+        'name': 'Shopee pay',
+      }, 
+      
+      {
+        'id':'2',
+        'image':'assets/images/ovo.png',
+        'name': 'OVO',
+      }, 
+      {
+        'id':'3',
+        'image':'assets/images/linkaja.png',
+        'name':'Link aja',
+      },
+      {
+        'id':'4',
+        'image':'assets/images/bca.png',
+        'name': 'BCA',
+      }, 
+      {
+        'id':'5',
+        'image':'assets/images/bri.png',
+        'name': 'Bank BRI',
+      }, 
+      {
+        'id':'6',
+        'image':'assets/images/mandiri.png',
+        'name':'Bank Mandiri',
+      },
+      {
+        'id':'7',
+        'image':'assets/images/lain.png',
+        'name': 'Bank Lainnya',
+      },
+
+
+      // {'OVO'}, 
+      // {'Link Aja'}, 
+      // {'Bank BCA'},
+      // {'Bank BRI'}, 
+      // {'Bank Mandiri'},
+      // {'Bank Lainnya'}
+  ];
 
   void onButtonPressed(){
   _controller.text = "";
@@ -42,11 +102,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(height: 20),
+
           Container(
-            height: 45,
+            height: 40,
             width: double.infinity ,
-            color: Color.fromARGB(255, 255, 255, 255),
-            
             child: Column (
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -65,17 +124,37 @@ class _PaymentMethodState extends State<PaymentMethod> {
               ]
             ),
           ),
-          
+          Container(
+            height: 35,
+            width: 300 ,
+            child: Column (
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Donasi untuk ${widget.detailEvent.fields.temaKegiatan}',
+                  style: (
+                    const TextStyle(
+                      color: Color.fromARGB(255, 139, 203, 127),
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w400,
+                    )
+                  ),
+                
+                ),
+                
+              ]
+            ),
+          ),
           Container(
             height: 55,
             width: double.infinity,
-            color: Color.fromARGB(255, 255, 255, 255),
+
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget> [
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -91,7 +170,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -107,7 +186,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -129,13 +208,13 @@ class _PaymentMethodState extends State<PaymentMethod> {
           Container(
             height: 70,
             width: double.infinity,
-            color: Color.fromARGB(255, 255, 255, 255),
+      
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget> [
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -155,7 +234,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -171,7 +250,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 ),
                 SizedBox(width: 15,),
                 Container(
-                  width: 100,
+                  width: 115,
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -196,14 +275,27 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 borderRadius: BorderRadius.circular(5)
               ),
             child: TextFormField(
-              controller: _controller,
+              controller: _controller, 
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: 'Masukkan nominal lainnyaa',
-                labelText: 'Nominal',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                     borderSide: const BorderSide(
-                        color: Color.fromARGB(255, 81, 180, 84), width: 10)),
+                        color: Color.fromARGB(255, 81, 180, 84), width: 10)
+                ),
+                hintText: 'Masukkan nominal lainnya',
+                labelText: 'Nominal',
+                suffixIcon: IconButton(
+                  onPressed: (){
+                    _controller.clear();
+                  }, 
+                  icon: Icon(Icons.clear)
+                ),
+                
+                
               ),
               onChanged: (String value) {
                 setState(() {
@@ -217,11 +309,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
           ),
           SizedBox(height: 5,),
           Container(
-            height: 200,
+            height: 130,
             width: 380,
             
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5)
+                
               ),
             child: TextFormField(
               decoration: InputDecoration(
@@ -244,7 +337,115 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 Nominal = value!;
               },
             )
+          ),
+          Container(
+            height: 30,
+            width: 380,
+     
+            
+            child: Column (
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pilih metode pembayaran',
+                  style: (
+                    const TextStyle(
+                      color: Color.fromARGB(255, 118, 176, 108),
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.w500,
+                    )
+                  ),
+                
+                ),
+                
+              ]
+            ),
+          ),
+          Container(
+            height: 50,
+            width: 380,
+            
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Color.fromARGB(136, 24, 115, 35)),
+              borderRadius: BorderRadius.circular(10)
+              
+            ),
+              
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                child: DropdownButtonHideUnderline(
+                  
+                  child: ButtonTheme(
+                    
+                    alignedDropdown: true,
+                    child: DropdownButton<String>(
+                      
+                      isDense: true,
+                      hint: new Text("Select payment method"),
+                      value: metodeDipilih,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          metodeDipilih = newValue;
+                        });
+
+                        print(metodeDipilih);
+                      },
+                      
+                      items: _metodebayarJson.map((Map map) {
+                        return new DropdownMenuItem<String>(
+                          value: map["id"].toString(),
+                          // value: _mySelection,
+                          child: Row(
+                            children: <Widget>[
+                              Image.asset(
+                                map["image"],
+                                width: 30,
+                              ),
+                              Container(
+                                  margin: EdgeInsets.only(left: 10),
+                                  child: Text(map["name"])),
+                                  
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           )
+          ),
+          SizedBox(height: 10),
+          Container(
+            height: 50,
+            width: 380,
+            child: Column (
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                
+                Container(
+                  width: 380,
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 118, 188, 112),
+                      foregroundColor: Color.fromARGB(255, 255, 255, 255)
+                    ),
+                    onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => konfirmasiPembayaran(nominal: _controller.text)));
+                    }, 
+                    child: 
+                      Text("Lakukan pembayaran"),
+
+                  ),
+                ),
+              
+              ]
+            ),
+          ),
           
         
         ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -22,67 +24,162 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       drawer: buildDrawer(context),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SingleChildScrollView(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 100),
             Container(
-              child: Image.asset(
-                'assets/images/main_illustration.png',
-                fit: BoxFit.contain,
-                width: 300,
-              ),
-            ),
-            SizedBox(height: 30,),
-            const Text(
-              "Track your Carbon Footprint and donate to nature",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            const Text(
-              "for a better future!",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-            ),
-            SizedBox(height: 50),
-            const Text(
-              "Fitur JejaKarbon",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: Colors.green
-              ),
+              width: 1000,
+              height: 570,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      margin: new EdgeInsets.only(left: 45.0),
+                      height: 150,
+                      child: Image.asset(
+                        'assets/images/logoWithTulisan.png',
+                        fit: BoxFit.contain,
+                        width: 300,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      color: Colors.green[300],
+                      width: 1000,
+                      // margin: new EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "    Hi!! ${request.jsonData["name"]}",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Colors.white),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      color: Colors.green[200],
+                      width: 1000,
+                      height: 35,
+                      margin: const EdgeInsets.only(left: 70.0),
+                      child: const Text(
+                        "   ",
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      color: Colors.green[100],
+                      width: 1000,
+                      height: 35,
+                      margin: const EdgeInsets.only(left: 140.0),
+                      child: const Text(
+                        " ",
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ]),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20)),
+                        margin: const EdgeInsets.only(left: 20, right: 10),
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: const <Widget>[
+                            Icon(
+                              color: Colors.white,
+                              Icons.account_circle,
+                              size: 60,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20)),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: const <Widget>[
+                            Icon(
+                              color: Colors.white,
+                              Icons.format_list_bulleted,
+                              size: 60,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20)),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: const <Widget>[
+                            Icon(
+                              color: Colors.white,
+                              Icons.calculate,
+                              size: 60,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
 
-            )
+                // const Text("for a better future!",
+                //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                // SizedBox(height: 50),
+                // const Text(
+                //   "Fitur JejaKarbon",
+                //   style: TextStyle(
+                //       fontWeight: FontWeight.bold,
+                //       fontSize: 30,
+                //       color: Colors.green),
+                // ),
+              ],
+            ),
           ],
         ),
       ),
