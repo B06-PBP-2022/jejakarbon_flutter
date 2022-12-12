@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/apps/faq/model/faq.dart';
@@ -24,16 +26,16 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
     final Faq faqs;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Answer A Question"),
+          title: const Text("Answer A Question"),
           flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                   colors: [
                     Color.fromARGB(255, 96, 183, 88),
                     Color.fromARGB(255, 163, 243, 160),
                   ],
-                  begin: const FractionalOffset(0.0, 0.0),
-                  end: const FractionalOffset(1.0, 0.0),
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
                   stops: [0.0, 1.0],
                   tileMode: TileMode.clamp),
             ),
@@ -50,9 +52,9 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     alignment: Alignment.topLeft,
-                    child: Text("Pertanyaan", 
+                    child: const Text("Pertanyaan", 
                       style: TextStyle(color: Colors.green),
                       textAlign: TextAlign.left,
                     ),
@@ -65,15 +67,15 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                     ),
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.faqs.fields.question, style: TextStyle(
+                      widget.faqs.fields.question, style: const TextStyle(
                         color: Colors.grey
                         ),
                       ),
                     ),
                   Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     alignment: Alignment.topLeft,
-                    child: Text("Jawaban Lama", 
+                    child: const Text("Jawaban Lama", 
                       style: TextStyle(color: Colors.green),
                       textAlign: TextAlign.left,
                     ),
@@ -86,15 +88,15 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                     ),
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.faqs.fields.answer, style: TextStyle(
+                      widget.faqs.fields.answer, style: const TextStyle(
                         color: Colors.grey
                         ),
                       ),
                     ),
                     Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     alignment: Alignment.topLeft,
-                    child: Text("Jawaban Baru", 
+                    child: const Text("Jawaban Baru", 
                       style: TextStyle(color: Colors.green),
                       textAlign: TextAlign.left,
                     ),
@@ -128,108 +130,141 @@ class _FaqFormAdminState extends State<FaqFormAdmin> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   Container(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: TextButton(
-                        style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(Size(150, 50)),
-                            backgroundColor: MaterialStateProperty.all(Colors.green),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              )
-                            )  
-                          ),
-                        onPressed: () async {
-                          final response = await request.postJson(
+                    height: 40,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 55, 157, 46),
+                            Color.fromARGB(255, 130, 232, 126),
+                          ], 
+                        ),
+                        borderRadius: const BorderRadius.all(Radius.circular(25)),
+                        boxShadow: [BoxShadow(
+                          color: Colors.green.withOpacity(0.2),
+                          spreadRadius: 4,
+                          blurRadius: 10,
+                          offset: const Offset(0,3),
+                        )]
+                      ),
+                    child: Center(
+                      child: GestureDetector(
+                          onTap: () async {
+                              final response = await request.postJson(
                               "https://jejakarbon.up.railway.app/faq/edit-question/${widget.faqs.pk}/",
                               jsonEncode({
                                 "answer": answer,
                               }));
-                          Navigator.pop(context);
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const FaqPage()),
-                          );
-                        },
-                        child: const Text(
-                          'Submit Answer',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
+
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                content: Text(
+                                    "Successfully answered! Thank you"),
+                              ));
+
+                              Navigator.pop(context);
+                              // ignore: use_build_context_synchronously
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const FaqPage()),
+                              );
+                            },
+                          child: const Text(
+                              'Save',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
                         ),
-                      ),
-                    ),
+                    )
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Container(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: TextButton(
-                        style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(Size(150, 50)),
-                            backgroundColor: MaterialStateProperty.all(Colors.green),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              )
-                            )  
-                        ),  
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const FaqPage()),
-                          );
-                        },
-                        child: const Text(
-                          'Cancel',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
+                      height: 40,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 55, 157, 46),
+                            Color.fromARGB(255, 130, 232, 126),
+                          ], 
                         ),
+                        borderRadius: const BorderRadius.all(Radius.circular(25)),
+                        boxShadow: [BoxShadow(
+                          color: Colors.green.withOpacity(0.2),
+                          spreadRadius: 4,
+                          blurRadius: 10,
+                          offset: const Offset(0,3),
+                        )]
                       ),
+                      child: Center(
+                        child: GestureDetector(
+                          onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const FaqPage()),
+                              );
+                            },
+                          child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                        ),
+                      )
                     ),
+                  const SizedBox(height: 10,),
+                   Container(
+                    height: 40,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 167, 22, 22),
+                            Color.fromARGB(255, 240, 81, 70),
+                          ], 
+                        ),
+                        borderRadius: const BorderRadius.all(Radius.circular(25)),
+                        boxShadow: [BoxShadow(
+                          color: Colors.green.withOpacity(0.2),
+                          spreadRadius: 4,
+                          blurRadius: 10,
+                          offset: const Offset(0,3),
+                        )]
+                      ),
+                    child: Center(
+                      child: GestureDetector(
+                          onTap: () async {
+                              final response = await request.postJson(
+                              "https://jejakarbon.up.railway.app/faq/delete-question/${widget.faqs.pk}/",
+                              jsonEncode({
+                              }));
+
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                  content: Text(
+                                      "Successfully deketed! Thank you"),
+                                ));
+
+                              Navigator.pop(context);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const FaqPage()),
+                              );
+                            },
+                          child: const Text(
+                              'Delete',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                        ),
+                    )
                   ),
-                  SizedBox(height: 10,),
-                  Container(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: TextButton(
-                        style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(Size(150, 50)),
-                            backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 189, 54, 27)),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              )
-                            )  
-                        ),  
-                        onPressed: () async {
-                          final response = await request.postJson(
-                          "https://jejakarbon.up.railway.app/faq/delete-question/${widget.faqs.pk}/",
-                          jsonEncode({
-                          }));
-                          Navigator.pop(context);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const FaqPage()),
-                          );
-                        },
-                        child: const Text(
-                          'Delete',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
