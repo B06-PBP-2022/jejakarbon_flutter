@@ -12,7 +12,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Container(
-      color: Colors.green[400],
+      color: Colors.green.withOpacity(0.8),
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),

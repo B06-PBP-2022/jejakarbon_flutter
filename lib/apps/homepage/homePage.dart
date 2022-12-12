@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         flexibleSpace: Container(
-            decoration: const BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 96, 183, 88),
@@ -121,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Colors.green.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(20)),
                         margin: const EdgeInsets.only(left: 20, right: 10),
                         padding: const EdgeInsets.all(20.0),
@@ -137,12 +138,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BukaDonasiPage()),
+                        );
+                      },
                       child: Container(
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Colors.green.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(20)),
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         padding: const EdgeInsets.all(20.0),
@@ -163,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Colors.green.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(20)),
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         padding: const EdgeInsets.all(20.0),
@@ -180,17 +187,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-
-                // const Text("for a better future!",
-                //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                // SizedBox(height: 50),
-                // const Text(
-                //   "Fitur JejaKarbon",
-                //   style: TextStyle(
-                //       fontWeight: FontWeight.bold,
-                //       fontSize: 30,
-                //       color: Colors.green),
-                // ),
               ],
             ),
           ],

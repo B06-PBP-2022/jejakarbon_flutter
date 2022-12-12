@@ -99,7 +99,9 @@ menghitung carbon footprint yang dihasilkan dari motor, mobil, dan listrik. Untu
 
 4) Halaman utama, Halaman penambahan project (**Dipa Alhaza**)
 - Form pembukaan donasi (post)
+- Form edit donasi (post)
 - Daftar seluruh donasi yang terdaftar (get)
+- Daftar donasi yang dibuat oleh perusahaan (user tipe organisasi) (get)
 
 5) Halaman form ikut donasi/pembayaran (**Pantun Elfreddy Sihombing**)
 - Form mengikuti donasi (post)

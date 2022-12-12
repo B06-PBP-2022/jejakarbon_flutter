@@ -2,17 +2,28 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
 import 'package:jejakarbon_flutter/apps/pembayaran/konfirmasiBayar.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/page/edit.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
 
+import 'package:jejakarbon_flutter/apps/buka_donasi/model/buka_donasi.dart';
+import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
+
+
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+
+
+
 
 
 class PaymentMethod extends StatefulWidget {
-  const PaymentMethod({super.key, required this.detailEvent});
 
-  final DaftarDonasi detailEvent;
+  DaftarDonasi detailEvent;
+
+  PaymentMethod({super.key, required this.detailEvent});
 
 
   @override
@@ -20,9 +31,11 @@ class PaymentMethod extends StatefulWidget {
 }
 
 class _PaymentMethodState extends State<PaymentMethod> {
+  
 
   @override
   String Nominal = "";
+  String Pesan = "";
   final _controller = TextEditingController();
   String? metodeDipilih;
   List<Map> _metodebayarJson = [
@@ -91,6 +104,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -163,6 +177,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                        _controller.text = "10000";
+                        Nominal = "10000";
                     }, 
                     child: 
                       Text("10.000")
@@ -179,6 +194,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                        _controller.text = "20000";
+                       Nominal = "20000";
                     }, 
                     child: 
                       Text("20.000")
@@ -195,6 +211,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                        _controller.text = "50000";
+                       Nominal = "50000";
                     }, 
                     child: 
                       Text("50.000")
@@ -225,6 +242,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                        _controller.text = "75000";
+                       Nominal = "75000";
                     },
                     child: 
                       Text("75.000")
@@ -243,6 +261,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                        _controller.text = "100000";
+                       Nominal = "100000";
                     }, 
                     child: 
                       Text("100.000")
@@ -259,6 +278,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     onPressed: () {
                        _controller.text = "200000";
+                        Nominal = "200000";
                     }, 
                     child: 
                       Text("200.000")
@@ -330,11 +350,11 @@ class _PaymentMethodState extends State<PaymentMethod> {
               maxLines: 4,
               onChanged: (String value) {
                 setState(() {
-                  Nominal = value;
+                  Pesan = value;
                 });
               },
               onSaved: (String? value) {
-                Nominal = value!;
+                Pesan = value!;
               },
             )
           ),
@@ -434,9 +454,27 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       backgroundColor: Color.fromARGB(255, 118, 188, 112),
                       foregroundColor: Color.fromARGB(255, 255, 255, 255)
                     ),
-                    onPressed: () {
-                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => konfirmasiPembayaran(nominal: _controller.text)));
+                    onPressed: () async{
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => konfirmasiPembayaran(nominal: _controller.text)));
+                      var terkumpul = widget.detailEvent.fields.totalDonasiTerkumpul;
+                      var nominalDonasi = int.parse(Nominal) ;
+                      int total = terkumpul + nominalDonasi;
+                      String totalText = "{$total}";
+                      print(total);
+                      print(widget.detailEvent.pk);
+                      
+                     
+                      final response = await request.postJson(
+                          "https://jejakarbon.up.railway.app/form-pembuatan-donasi/edit-event/${widget.detailEvent.pk}/",
+                          jsonEncode({
+                            "total_donasi_terkumpul": totalText,
+                          })
+                      );
+
+                    
+                    
                     }, 
+                    
                     child: 
                       Text("Lakukan pembayaran"),
 
