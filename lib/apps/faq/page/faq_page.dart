@@ -26,14 +26,14 @@ class _FaqPageState extends State<FaqPage> {
         appBar: AppBar(
           title: const Text("Frequently Asked Questions"),
           flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 96, 183, 88),
                   Color.fromARGB(255, 153, 231, 150),
                 ],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(1.0, 0.0),
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
                 stops: [0.0, 1.0],
                 tileMode: TileMode.clamp),
           ),
@@ -59,14 +59,14 @@ class _FaqPageState extends State<FaqPage> {
                 );
               } else {
                 return Container(
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     child: ListView.builder(
                         itemCount: snapshot.data!.length,
                         itemBuilder: (_, index) => GestureDetector(
                               child: Accordion(
                                 maxOpenSections: 2,
                                 headerBackgroundColor:
-                                    Color.fromARGB(255, 198, 236, 209),
+                                    const Color.fromARGB(255, 198, 236, 209),
                                 headerBorderRadius: 5,
                                 scaleWhenAnimating: true,
                                 openAndCloseAnimation: true,
@@ -78,7 +78,7 @@ class _FaqPageState extends State<FaqPage> {
                                     SectionHapticFeedback.light,
                                 paddingListBottom: 1,
                                 paddingListTop: 1,
-                                rightIcon: 	Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 20),
+                                rightIcon: 	const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 20),
                                 children: [
                                   AccordionSection(
                                       isOpen: false,
@@ -112,7 +112,7 @@ class _FaqPageState extends State<FaqPage> {
                                               padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10),
-                                              child: Text(
+                                              child: const Text(
                                                 "Jawaban:",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class _FaqPageState extends State<FaqPage> {
                                                 overflow: TextOverflow.visible,
                                               ),
                                             ),
-                                            SizedBox(height: 10,),
+                                            const SizedBox(height: 10,),
                                             request.loggedIn && request.jsonData["is_admin"] ?
                                             Container(
                                               child: Align(
@@ -147,7 +147,7 @@ class _FaqPageState extends State<FaqPage> {
                                                     ));
                                                   },
                                                   child: const Text(
-                                                    'edit answer',
+                                                    'edit',
                                                     style: TextStyle(
                                                         color: Colors.green,
                                                         ),
@@ -167,36 +167,21 @@ class _FaqPageState extends State<FaqPage> {
           },
         ),
         floatingActionButton: request.loggedIn && !request.jsonData["is_admin"]
-            ? Container(
-                padding: const EdgeInsets.only(left: 30),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: TextButton(
-                    style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(100, 50)),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.green)),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) => FaqForm())
-                          )
-                        );
-                    },
-                    child: const Text(
-                      '+',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ),
-                ),
-              )
+            ? FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => const FaqForm())
+                    )
+                  );
+                },
+                backgroundColor: Colors.green,
+                child: const Icon(Icons.add),
+              ) 
             : ( !request.loggedIn ?
               FloatingActionButton.extended(
                 onPressed: () {
                   Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => LandingPage())
+                    MaterialPageRoute(builder: ((context) => const LandingPage())
                     )
                   );
                 },
@@ -207,6 +192,8 @@ class _FaqPageState extends State<FaqPage> {
               Container(
                 // admin tidak bisa menambahkan pertanyaan
               )
-        ));
+            ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        );
   }
 }
