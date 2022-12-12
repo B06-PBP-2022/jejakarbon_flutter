@@ -2,7 +2,7 @@
 [![Staging](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/staging.yml/badge.svg)](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/pre-release.yml/badge.svg)](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/pre-release.yml)
 [![Release](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/release.yml/badge.svg)](https://github.com/B06-PBP-2022/jejakarbon_flutter/actions/workflows/release.yml)
-[![Build status](https://build.appcenter.ms/v0.1/apps/8e0e809d-536e-4e2d-a7fe-2c7cd087b39f/branches/main/badge)](https://appcenter.ms)
+[![Build status](https://build.appcenter.ms/v0.1/apps/8e0e809d-536e-4e2d-a7fe-2c7cd087b39f/branches/main/badge)](https://install.appcenter.ms/orgs/b06-pbp-2022/apps/jejakarbon/distribution_groups/public)
 
 ## 🧑‍💻 Nama-nama anggota kelompok 🧑‍💻
 Daffa Ilham Restupratama - 2106751013

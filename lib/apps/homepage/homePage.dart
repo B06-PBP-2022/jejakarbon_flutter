@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile_page.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               width: 1000,
-              height: 570,
+              height: 400,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -106,25 +108,28 @@ class _MyHomePageState extends State<MyHomePage> {
                         " ",
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
                   ]),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Center(
+              child: Column(
               children: <Widget>[
-                Row(
+                Column(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfilePage()),
+                        );
+                      },
                       child: Container(
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
                             color: Colors.green.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(20)),
-                        margin: const EdgeInsets.only(left: 20, right: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
                         padding: const EdgeInsets.all(20.0),
                         child: Row(
                           children: const <Widget>[
@@ -137,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20,),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
@@ -164,6 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20,),
                     GestureDetector(
                       onTap: () {},
                       child: Container(
@@ -185,12 +192,23 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20,),
                   ],
                 ),
               ],
             ),
+            )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const FaqPage()),
+          );
+        },
+        child: const Icon(Icons.forum),
       ),
     );
   }
