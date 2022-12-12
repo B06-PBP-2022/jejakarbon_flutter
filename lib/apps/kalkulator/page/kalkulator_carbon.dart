@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:jejakarbon_flutter/apps/kalkulator/util/fetch.dart';
 
-enum FuelType {bensin, diesel}
+enum FuelType { bensin, diesel }
 
 class KalkulatorPage extends StatefulWidget {
   const KalkulatorPage({super.key});
@@ -76,33 +76,33 @@ class _KalkulatorState extends State<KalkulatorPage> {
       Column(
         children: <Widget>[
           const ListTile(
-                        leading: Icon(Icons.local_gas_station_sharp),
-                        title: Text("Jenis BBM"),
-                      ),
-          ListTile(
-          title: const Text('Bensin'),
-          leading: Radio<FuelType>(
-            value: FuelType.bensin,
-            groupValue: fueltype,
-            onChanged: (FuelType? value) {
-              setState(() {
-                fueltype = value;
-              });
-            },
+            leading: Icon(Icons.local_gas_station_sharp),
+            title: Text("Jenis BBM"),
           ),
-        ),
           ListTile(
-          title: const Text('Solar'),
-          leading: Radio<FuelType>(
-            value: FuelType.diesel,
-            groupValue: fueltype,
-            onChanged: (FuelType? value) {
-              setState(() {
-                fueltype = value;
-              });
-            },
+            title: const Text('Bensin'),
+            leading: Radio<FuelType>(
+              value: FuelType.bensin,
+              groupValue: fueltype,
+              onChanged: (FuelType? value) {
+                setState(() {
+                  fueltype = value;
+                });
+              },
+            ),
           ),
-        ),
+          ListTile(
+            title: const Text('Solar'),
+            leading: Radio<FuelType>(
+              value: FuelType.diesel,
+              groupValue: fueltype,
+              onChanged: (FuelType? value) {
+                setState(() {
+                  fueltype = value;
+                });
+              },
+            ),
+          ),
         ],
       ),
       Padding(
@@ -233,30 +233,38 @@ class _KalkulatorState extends State<KalkulatorPage> {
                             TextButton(
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.blue),
+                                    MaterialStateProperty.all(Colors.green),
                               ),
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   if (usage == "listrik") {
                                     print(usage);
                                     print(kilowattHour);
-                                    final response = await request.post(
-                                        'http://localhost:8000/kalkulator/calculate-listrik-flutter/',
-                                        {
+                                    String postUrl1 =
+                                        'https://jejakarbon.up.railway.app/kalkulator/calculate-listrik-flutter/';
+                                    var url = Uri.parse(postUrl1);
+                                    final response = await http.post(url,
+                                        body: json.encode({
                                           'kilowatt_hour': kilowattHour,
                                           'usage': usage,
-                                        });
-                                    ;
+                                        }));
                                   } else {
-                                    final response = await request.post(
-                                        'https://jejakarbon.up.railway.app/kalkulator/calculate-kendaraan-flutter/',
-                                        {
+                                    String postUrl2 =
+                                        'https://jejakarbon.up.railway.app/kalkulator/calculate-kendaraan-flutter/';
+                                    var url = Uri.parse(postUrl2);
+                                    final response = await http.post(url,
+                                        body: json.encode({
                                           "fuel_type": fueltype.toString(),
                                           "kilometer_jarak": jarakKm,
                                           "litre_per_km": litrePerKm,
                                           "usage": usage,
-                                        });
+                                        }));
                                   }
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              KalkulatorPage()));
                                 }
                               },
                               child: const Text(
@@ -264,41 +272,105 @@ class _KalkulatorState extends State<KalkulatorPage> {
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  width: 150,
-                                  height: 150,
-                                  alignment: Alignment.center,
-                                  child: Card(
-                                    child: Column(
-                                      children: [
-                                        const Text('Kalkulasi Carbon Print Terakhir'),
-                                        Text('${snapshot.data[0].result}')
-                                      ],
-                                    )
-                                  ))
+                                    // width: 900,
+                                    // height: 100,
+                                    height: 120.0,
+                                    width: 200.0,
+                                    decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    // padding: const EdgeInsets.all(18),
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        // color: Colors.green,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                                'Kalkulasi Carbon Print Terakhir',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white)),
+                                            Text(
+                                              '${snapshot.data[0].sum}',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.white),
+                                            )
+                                          ],
+                                        ))),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                    // width: 900,
+                                    // height: 100,
+                                    // width: 150,
+                                    // height: 150,
+                                    height: 120.0,
+                                    width: 200.0,
+                                    // margin: const EdgeInsets.symmetric(
+                                    //     horizontal: 60, vertical: 10),
+                                    // padding: const EdgeInsets.all(18),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              'Total Carbon Print Kamu',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                            Text(
+                                              '${snapshot.data[0].result}',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.white),
+                                            )
+                                          ],
+                                        )))
                               ],
                             )
-                            
-                            )
-                            Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  child: Text('${snapshot.data[0].result}'),
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  child: Text('${snapshot.data[0].sum}'),
-                                ),
-                              ),
-                            ),
+
+                            // )
+                            // Center(
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.all(8.0),
+                            //     child: Card(
+                            //       child: Text('${snapshot.data[0].result}'),
+                            //     ),
+                            //   ),
+                            // ),
+                            // Center(
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.all(8.0),
+                            //     child: Card(
+                            //       child: Text('${snapshot.data[0].sum}'),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
