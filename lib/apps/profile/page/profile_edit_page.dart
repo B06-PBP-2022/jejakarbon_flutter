@@ -50,28 +50,47 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               key: _formKey,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      labelText: label,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      )),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _input = value!;
-                    });
-                  },
-                  onSaved: (String? value) {
-                    setState(() {
-                      _input = value!;
-                    });
-                  },
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "Kolom input tidak boleh kosong!";
-                    }
-                    return null;
-                  },
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color.fromARGB(87, 120, 219, 141),
+                            blurRadius: 5,
+                            offset: Offset(3, 3))
+                      ]),
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    // decoration: const BoxDecoration(
+                    //     border: Border(
+                    //         bottom: BorderSide(
+                    //             color: Color.fromARGB(107, 158, 158, 158)))),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: label,
+                        hintText: 'Masukkan $label',
+                        border: InputBorder.none,
+                      ),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _input = value!;
+                        });
+                      },
+                      onSaved: (String? value) {
+                        setState(() {
+                          _input = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Kolom input tidak boleh kosong!";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
