@@ -43,11 +43,6 @@ class _BukaDonasiFormState extends State<EditDonasiForm> {
     _target.text = "${j}";
   }
 
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   String _formatNumber(String s) =>
       NumberFormat.decimalPattern(_locale).format(int.parse(s));
   String get _currency =>
@@ -101,11 +96,11 @@ class _BukaDonasiFormState extends State<EditDonasiForm> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
-                      onChanged: (String? value) {
-                        setState(() {
-                          _judul.text = value!;
-                        });
-                      },
+                      // onChanged: (String? value) {
+                      //   setState(() {
+                      //     _judul.text = value!;
+                      //   });
+                      // },
                       onSaved: (String? value) {
                         setState(() {
                           _judul.text = value!;
@@ -135,11 +130,11 @@ class _BukaDonasiFormState extends State<EditDonasiForm> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
-                      onChanged: (String? value) {
-                        setState(() {
-                          _deskripsi.text = value!;
-                        });
-                      },
+                      // onChanged: (String? value) {
+                      //   setState(() {
+                      //     _deskripsi.text = value!;
+                      //   });
+                      // },
                       onSaved: (String? value) {
                         setState(() {
                           _deskripsi.text = value!;
@@ -167,17 +162,17 @@ class _BukaDonasiFormState extends State<EditDonasiForm> {
                       decoration: InputDecoration(
                         prefixText: _currency,
                         labelText: "Target Donasi",
-                        icon: const Icon(Icons.assignment),
+                        icon: const Icon(Icons.monetization_on_rounded),
                         // Menambahkan circular border agar lebih rapi
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
-                      onChanged: (String? value) {
-                        setState(() {
-                          _target.text = value!;
-                        });
-                      },
+                      // onChanged: (String? value) {
+                      //   setState(() {
+                      //     _target.text = value!;
+                      //   });
+                      // },
                       onSaved: (String? value) {
                         setState(() {
                           _target.text = value!;
