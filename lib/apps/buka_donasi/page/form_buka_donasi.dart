@@ -134,7 +134,7 @@ class _BukaDonasiFormState extends State<BukaDonasiForm> {
                       decoration: InputDecoration(
                         prefixText: _currency,
                         labelText: "Target Donasi",
-                        icon: const Icon(Icons.assignment),
+                        icon: const Icon(Icons.monetization_on_rounded),
                         // Menambahkan circular border agar lebih rapi
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0),

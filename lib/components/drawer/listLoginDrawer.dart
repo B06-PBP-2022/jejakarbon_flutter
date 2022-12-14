@@ -6,6 +6,7 @@ import 'package:jejakarbon_flutter/apps/profile/page/profile_page.dart';
 import 'package:jejakarbon_flutter/apps/homepage/homePage.dart';
 import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
+import 'package:jejakarbon_flutter/apps/kalkulator/page/kalkulator_carbon.dart';
 
 class MyListLoginDrawer extends StatefulWidget {
   @override
@@ -43,6 +44,19 @@ class _MyListLoginDrawerState extends State<MyListLoginDrawer> {
             );
           },
         ),
+        if (request.jsonData["organization"] == false) ...[
+          ListTile(
+            leading: const Icon(Icons.calculate),
+            title: const Text('Kalkulator Carbon'),
+            onTap: () {
+              // Route ke faq page
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const KalkulatorPage()),
+              );
+            },
+          ),
+        ],
         ListTile(
           leading: const Icon(Icons.question_answer),
           title: const Text('FAQ'),

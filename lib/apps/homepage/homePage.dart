@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jejakarbon_flutter/apps/faq/page/faq_page.dart';
+import 'package:jejakarbon_flutter/apps/profile/page/profile_page.dart';
 import 'package:jejakarbon_flutter/components/drawer/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:jejakarbon_flutter/apps/buka_donasi/page/open_donasi_page.dart';
+import 'package:jejakarbon_flutter/apps/kalkulator/page/kalkulator_carbon.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -50,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               width: 1000,
-              height: 570,
+              height: 400,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -106,25 +109,33 @@ class _MyHomePageState extends State<MyHomePage> {
                         " ",
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
                   ]),
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
+                const SizedBox(
+                  height: 160,
+                ),
                 Row(
                   children: <Widget>[
+                    const SizedBox(
+                      width: 15,
+                    ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfilePage()),
+                        );
+                      },
                       child: Container(
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
                             color: Colors.green.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(20)),
-                        margin: const EdgeInsets.only(left: 20, right: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
                         padding: const EdgeInsets.all(20.0),
                         child: Row(
                           children: const <Widget>[
@@ -136,6 +147,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -164,8 +178,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        !request.jsonData['organization']
+                            ? Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const KalkulatorPage()),
+                              )
+                            : showAlertDialog(context);
+                      },
                       child: Container(
                         width: 100,
                         height: 100,
@@ -185,6 +211,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ],
@@ -192,6 +221,45 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.green,
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const FaqPage()),
+          );
+        },
+        child: const Icon(Icons.forum),
+      ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Fitur di blokir"),
+      content: Text(
+          "Hanya akun bertipe BUKAN Organisasi yang dapat menggunakan fitur ini"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

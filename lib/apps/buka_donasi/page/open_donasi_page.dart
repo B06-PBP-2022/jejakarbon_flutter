@@ -27,7 +27,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Buka Donasi"),
+          title: const Text("Daftar Donasi"),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -95,6 +95,7 @@ class _BukaDonasiState extends State<BukaDonasiPage> {
                                 ),
                                 const SizedBox(height: 20),
                                 Text(
+                                  maxLines: 3,
                                   "${snapshot.data![index].fields.deskripsi}",
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
